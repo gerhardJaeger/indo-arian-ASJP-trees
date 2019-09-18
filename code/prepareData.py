@@ -157,8 +157,8 @@ if len(nodes) > 1:
     mb += ','.join(['c'+str(i) for i in range(1, len(nodes))])+');\n'
 mb += """      prset brlenspr = clock:uniform;
       prset clockvarpr = igr;
-      mcmcp stoprule=no burninfrac=0.5 stopval=0.01 filename=output/indoiranian samplefreq=1000;
-      mcmc ngen=2000000 nchains=1 nruns=4;
+      mcmcp stoprule=no burninfrac=0.5 stopval=0.01 filename=output/indoiranian samplefreq=5000;
+      mcmc ngen=5000000 nchains=1 nruns=4;
       sump;
       sumt;
       q;
