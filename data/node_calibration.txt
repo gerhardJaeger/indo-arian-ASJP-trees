@@ -1,0 +1,19 @@
+#each block gives 
+#the tip which should have a very short branch
+#the distribution over the age of the clade
+#the clade
+
+
+sans1269
+Unif(3400,3000)	
+sans1269	pali1273	maha1305	panj1256	sera1259	sind1272	assa1263	beng1280	oriy1255	nepa1254	mait1250	awad1243	bhoj1244	hind1269	doma1260	vlax1238	doma1258	marw1260	dhun1238	mewa1249	bagr1243	guja1252	saur1248	mara1378	konk1267	dhiv1236	sinh1246	khow1242	kala1372	torw1241	indu1241	phal1254	shin1264	kash1277
+
+
+oldp1254	
+Unif(2500,2300)	
+midd1350	dari1249	pahl1241	oldp1254
+
+
+pahl1241
+Unif(1800,1400)
+midd1350	dari1249	pahl1241
