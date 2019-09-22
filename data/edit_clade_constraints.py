@@ -70,7 +70,7 @@ for n in ctree.get_descendants():
 
 
 
-ctree.write(format=9,outfile='constraints2.tre')
+ctree.write(format=9,outfile='constraint2.tre')
 
 
 clade_calib_anc = {
