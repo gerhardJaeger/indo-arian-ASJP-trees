@@ -81,8 +81,8 @@ clade_calib_anc = {
 
 
 clade_calib = {
-    'PIIr':'Unif(3900,3600)',
-    'PIr':'Unif(3500,3300)'
+    'PIIr':'Unif(3900,3600)', #post BMAC breakup
+    'PIr':'Unif(3500,3300)'   #Yaz I
 }
 
 
