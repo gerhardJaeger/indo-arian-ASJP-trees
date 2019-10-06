@@ -99,7 +99,7 @@ asjpCC = asjpCC[asjpCC.doculect.isin(asjp.names)]
 
 asjpCC = asjpCC[asjpCC.glottocode.isin(indoiranian.glottocode.values)]
 
-ctree = Tree('constraintTree.tre')
+ctree = Tree('../data/constraint2.tre')
 
 taxa = indoiranian.glottocode.unique()
 
