@@ -99,7 +99,8 @@ asjpCC = asjpCC[asjpCC.doculect.isin(asjp.names)]
 
 asjpCC = asjpCC[asjpCC.glottocode.isin(indoiranian.glottocode.values)]
 
-ctree = Tree('../data/constraint2.tre')
+ctree = Tree('../data/constraint3.tre')
+ctree.ladderize()
 
 taxa = indoiranian.glottocode.unique()
 
@@ -132,38 +133,26 @@ cc_sc = pd.concat([ccMtx, scMtx], axis=1)
 
 nexCharOutput(cc_sc, 'indoiranian.nex', datatype='restriction')
 
-
-
 nodes = np.array([nd for nd in ctree.get_descendants()
                   if not nd.is_root() and not nd.is_leaf()])
 
-mb = """#Nexus
-Begin MrBayes;
-      execute indoiranian.nex;
-      charset cc = 1-"""+str(n)+""";
-      charset sc = """+str(n+1)+"""-"""+str(n+m)+""";
-      partition dtype = 2:cc, sc;
-      set partition = dtype;
-      unlink Statefreq=(all) shape=(all);
-      lset applyto=(all) rates=gamma;
-      lset applyto=(1) coding=noabsencesites;
-      lset applyto=(2) coding=all;
-"""
-if len(nodes) > 1:
-    for i, nd in enumerate(nodes):
-        mb += '          constraint c' + str(i) + ' = '
-        mb += ' '.join(nd.get_leaf_names())+';\n'
-    mb += '          prset topologypr = constraints('
-    mb += ','.join(['c'+str(i) for i in range(1, len(nodes))])+');\n'
-mb += """      prset brlenspr = clock:uniform;
-      prset clockvarpr = igr;
-      mcmcp stoprule=no burninfrac=0.5 stopval=0.01 filename=output/indoiranian samplefreq=5000;
-      mcmc ngen=5000000 nchains=1 nruns=4;
-      sump;
-      sumt;
-      q;
-end;
-"""
+for i, nd in enumerate(nodes):
+    nd.name = 'clade'+str(i+1).rjust(2, '0')
 
-with open('indoiranian.mb.nex', 'w') as f:
-    f.write(mb)
+def nname(x):
+    if x.is_leaf():
+        return '"'+x.name+'"'
+    else:
+        return x.name
+
+
+rev = ""
+for nd in reversed(nodes):
+    rev += nd.name + " = clade("
+    rev += ', '.join([nname(x) for x in nd.get_children()])
+    rev += ")\n"
+rev += 'constraints = ['+', '.join([nname(nd) for nd in reversed(nodes)])
+rev += ']\n'
+
+with open('constraints.Rev', 'w') as f:
+    f.write(rev)
