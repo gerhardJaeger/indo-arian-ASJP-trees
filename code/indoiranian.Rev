@@ -14,30 +14,30 @@ moves = VectorMoves()
 speciation_rate ~ dnExponential(10000)
 extinction_rate ~ dnExponential(10000)
 
-moves.append( mvScale(speciation_rate, lambda=0.01, weight=1, tune=FALSE) )
 moves.append( mvScale(speciation_rate, lambda=0.1,  weight=1, tune=FALSE) )
 moves.append( mvScale(speciation_rate, lambda=1.0,  weight=1, tune=FALSE) )
+moves.append( mvScale(speciation_rate, lambda=10,  weight=1, tune=FALSE) )
 
-moves.append( mvScale(extinction_rate, lambda=0.01, weight=1, tune=FALSE) )
 moves.append( mvScale(extinction_rate, lambda=0.1,  weight=1, tune=FALSE) )
 moves.append( mvScale(extinction_rate, lambda=1,    weight=1, tune=FALSE) )
+moves.append( mvScale(extinction_rate, lambda=10,    weight=1, tune=FALSE) )
 
 rho ~ dnBeta(5, 5)
-moves.append( mvScale(rho, lambda=0.01, weight=1, tune=FALSE) )
 moves.append( mvScale(rho, lambda=0.1,  weight=1, tune=FALSE) )
 moves.append( mvScale(rho, lambda=1,    weight=1, tune=FALSE) )
+moves.append( mvScale(rho, lambda=10,    weight=1, tune=FALSE) )
 
 
 psi ~ dnHalfNormal(0, 100)
 
-moves.append( mvScale(psi, lambda=0.01, weight=1, tune=FALSE) )
 moves.append( mvScale(psi, lambda=0.1,  weight=1, tune=FALSE) )
 moves.append( mvScale(psi, lambda=1,    weight=1, tune=FALSE) )
+moves.append( mvScale(psi, lambda=10,    weight=1, tune=FALSE) )
 
 origin_time ~ dnUniform(3.6, 3.9)
-moves.append( mvSlide(origin_time, delta=0.01, weight=1.0, tune=FALSE) )
 moves.append( mvSlide(origin_time, delta=0.1,  weight=1.0, tune=FALSE) )
 moves.append( mvSlide(origin_time, delta=1,    weight=1.0, tune=FALSE) )
+moves.append( mvSlide(origin_time, delta=10,    weight=1.0, tune=FALSE) )
 
 
 
@@ -102,22 +102,23 @@ num_samp_anc := tree.numSampledAncestors();
 
 branch_rates_mean ~ dnLognormal(-10.0, 0.1)
 
-moves.append( mvScale(branch_rates_mean, lambda=0.01, weight=1.0, tune=FALSE) )
 moves.append( mvScale(branch_rates_mean, lambda=0.1,  weight=1.0, tune=FALSE) )
 moves.append( mvScale(branch_rates_mean, lambda=1.0,  weight=1.0, tune=FALSE) )
+moves.append( mvScale(branch_rates_mean, lambda=10,  weight=1.0, tune=FALSE) )
 
 n_branches <- 2 * n_taxa - 2
 
 for (i in 1:n_branches) {
   branch_rates[i] ~ dnExp(1/branch_rates_mean)
-  moves.append( mvScale(branch_rates[i], lambda=1.0,  weight=1.0, tune=FALSE) )
   moves.append( mvScale(branch_rates[i], lambda=0.1,  weight=1.0, tune=FALSE) )
-  moves.append( mvScale(branch_rates[i], lambda=0.01, weight=1.0, tune=FALSE) )
+  moves.append( mvScale(branch_rates[i], lambda=1.0,  weight=1.0, tune=FALSE) )
+  moves.append( mvScale(branch_rates[i], lambda=10,  weight=1.0, tune=FALSE) )
+
 }
 
-moves.append( mvVectorScale(branch_rates, lambda=0.01, weight=1.0, tune=FALSE) )
 moves.append( mvVectorScale(branch_rates, lambda=0.1,  weight=1.0, tune=FALSE) )
 moves.append( mvVectorScale(branch_rates, lambda=1.0,  weight=1.0, tune=FALSE) )
+moves.append( mvVectorScale(branch_rates, lambda=10,  weight=1.0, tune=FALSE) )
 
 
 ## Model of character evolution
@@ -174,7 +175,7 @@ mymodel = model(seq)
 
 monitors = VectorMonitors()
 
-thinning = 100
+thinning = 10
 monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning) )
 
 monitors.append( mnFile(filename="output/indoiranian.trees", printgen=thinning, tree) )
@@ -186,11 +187,20 @@ monitors.append(mnStochasticVariable(filename="output/indoiranian.var", printgen
 mymcmc = mcmc(mymodel, monitors, moves, nruns=4)
 
 #mymcmc.burnin(1000, tuningInterval=100)
-mymcmc.run(generations=10000)
+mymcmc.run(generations=1000)
 
 mymcmc.operatorSummary()
 
-treeTrace = readTreeTrace("output/indoiranian.trees")
+tt1 = readTreeTrace("output/indoiranian_run_1.trees", burnin=0.5).getTrees()
+tt2 = readTreeTrace("output/indoiranian_run_2.trees", burnin=0.5).getTrees()
+tt3 = readTreeTrace("output/indoiranian_run_3.trees", burnin=0.5).getTrees()
+tt4 = readTreeTrace("output/indoiranian_run_4.trees", burnin=0.5).getTrees()
 
-mcc = mccTree(treeTrace, file = "output/indoiranian.mcc.tre")
+tt = tt1
+tt.append(tt2)
+tt.append(tt3)
+tt.append(tt4)
+
+mcc = mccTree(treeTrace(tt, burnin=0), file = "output/indoiranian.mcc.tre")
+ct = consensusTree(treeTrace(tt, burnin=0), file = "output/indoiranian.con.tre")
 q()
