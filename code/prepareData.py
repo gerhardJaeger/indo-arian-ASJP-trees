@@ -99,7 +99,7 @@ asjpCC = asjpCC[asjpCC.doculect.isin(asjp.names)]
 
 asjpCC = asjpCC[asjpCC.glottocode.isin(indoiranian.glottocode.values)]
 
-ctree = Tree('../data/constraint4.tre')
+ctree = Tree('../data/constraint3.tre')
 ctree.ladderize()
 
 taxa = np.array(ctree.get_leaf_names())
