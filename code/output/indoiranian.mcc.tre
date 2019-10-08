@@ -1,0 +1,77 @@
+#NEXUS
+
+	Begin taxa;
+	Dimensions ntax=66;
+	Taxlabels
+		assa1263
+		aves1237
+		awad1243
+		bact1239
+		bagr1243
+		bakh1245
+		beng1280
+		bhoj1244
+		cent1972
+		dari1249
+		dhiv1236
+		dhun1238
+		diml1238
+		doma1258
+		doma1260
+		esht1238
+		gila1241
+		guja1252
+		hind1269
+		indu1241
+		ishk1246
+		jude1256
+		kala1372
+		kash1277
+		khot1251
+		khow1242
+		khwa1238
+		konk1267
+		kumz1235
+		luri1257
+		maha1305
+		mait1250
+		mara1378
+		marw1260
+		maza1291
+		mewa1249
+		midd1350
+		nepa1254
+		oldp1254
+		oriy1255
+		ormu1247
+		osse1243
+		pahl1241
+		pali1273
+		panj1256
+		para1299
+		part1239
+		pash1269
+		phal1254
+		pir
+		sang1315
+		sans1269
+		sari1246
+		saur1248
+		sera1259
+		shin1264
+		shug1248
+		sind1272
+		sinh1246
+		sogd1245
+		taly1247
+		torw1241
+		vlax1238
+		wakh1245
+		west2368
+		yagn1238
+		;
+End;
+
+Begin trees;
+tree TREE1 = [&R](((((((((((dari1249[&index=61]:705.113301,midd1350[&index=60]:705.113301)[&index=67,posterior=1.000000,age_95%_HPD={13.4983,1531.68}]:923.837138)pahl1241[&index=68,posterior=1.000000,age_95%_HPD={1441.79,1799.39},sampled_ancestor=1.000000]:749.997035)oldp1254[&index=69,posterior=1.000000,age_95%_HPD={2304.18,2476.81},sampled_ancestor=1.000000]:234.219658,(((kumz1235[&index=55]:693.836090,luri1257[&index=56]:693.836090)[&index=70,posterior=0.450980,age_95%_HPD={5.81353,1631.32}]:1044.015468,bakh1245[&index=54]:1737.851558)[&index=71,posterior=0.299020,age_95%_HPD={1088.73,2505.34}]:382.478697,jude1256[&index=57]:2120.330255)[&index=72,posterior=0.848039,age_95%_HPD={1238.58,2690.95}]:492.836877)[&index=73,posterior=1.000000,age_95%_HPD={2474.44,2811.72}]:-61.950296,((gila1241[&index=50]:1120.916862)bact1239[&index=74,posterior=0.083333,age_95%_HPD={1026.43,1196.91},sampled_ancestor=0.715686]:511.414998,sang1315[&index=53]:1632.331861)[&index=75,posterior=0.073529,age_95%_HPD={1215.32,2274.6}]:918.884975)[&index=76,posterior=0.024510,age_95%_HPD={2477.07,2569.31}]:162.960680,((pash1269[&index=52]:1897.020431)part1239[&index=77,posterior=0.039216,age_95%_HPD={1841.14,1997.11},sampled_ancestor=0.862745]:270.866925,west2368[&index=49]:2167.887357)[&index=78,posterior=0.014706,age_95%_HPD={2304.27,2326.46}]:546.290159)[&index=79,posterior=0.004902,age_95%_HPD={2714.18,2714.18}]:120.815804,(((((ishk1246[&index=44]:461.708052,shug1248[&index=43]:461.708052)[&index=80,posterior=1.000000,age_95%_HPD={1.1146,1016.23}]:523.905468,sari1246[&index=42]:985.613520)[&index=81,posterior=1.000000,age_95%_HPD={458.376,1564.52}]:556.666138,(wakh1245[&index=45]:1224.163828)khot1251[&index=82,posterior=0.946078,age_95%_HPD={1129.54,1299.86},sampled_ancestor=0.946078]:318.115831)[&index=83,posterior=0.848039,age_95%_HPD={1216.88,2047.97}]:630.810371,((yagn1238[&index=47]:1104.957174)sogd1245[&index=84,posterior=0.872549,age_95%_HPD={1004.8,1190.4},sampled_ancestor=0.872549]:567.201065,osse1243[&index=63]:1672.158239)[&index=85,posterior=0.210784,age_95%_HPD={1132.74,2168.42}]:500.931790)[&index=86,posterior=0.166667,age_95%_HPD={1635.68,2524.21}]:482.016551,(((maza1291[&index=39]:1037.208219,taly1247[&index=40]:1037.208219)[&index=87,posterior=0.715686,age_95%_HPD={330.577,1879.02}]:187.291607,esht1238[&index=51]:1224.499826)[&index=88,posterior=0.044118,age_95%_HPD={769.845,1744.13}]:410.762382,cent1972[&index=41]:1635.262209)[&index=89,posterior=0.058824,age_95%_HPD={945.803,2312.22}]:1019.844372)[&index=90,posterior=0.029412,age_95%_HPD={2457.87,2734.63}]:179.886740)[&index=91,posterior=0.049020,age_95%_HPD={2697.22,2960.88}]:161.004355,((diml1238[&index=66]:927.245191)khwa1238[&index=92,posterior=0.058824,age_95%_HPD={867.65,995.837},sampled_ancestor=0.617647]:739.584055,(ormu1247[&index=65]:1394.440527,para1299[&index=64]:1394.440527)[&index=93,posterior=1.000000,age_95%_HPD={629.532,2237.58}]:272.388718)[&index=94,posterior=0.083333,age_95%_HPD={1223.29,2301.05}]:1329.168430)[&index=95,posterior=0.671569,age_95%_HPD={2774.57,3209.65}]:357.704633,aves1237[&index=37,sampled_ancestor=0.299020,age_95%_HPD={2620.98,2799.69}]:651.973348)[&index=96,posterior=1.000000,age_95%_HPD={3210.61,3487.74}]:83.326853)pir[&index=97,posterior=1.000000,age_95%_HPD={3335.99,3497.87},sampled_ancestor=1.000000]:364.968380,((((((((((doma1258[&index=19]:871.230941,vlax1238[&index=18]:871.230941)[&index=98,posterior=0.803922,age_95%_HPD={483.993,1333.96}]:324.834796,doma1260[&index=17]:1196.065737)[&index=99,posterior=1.000000,age_95%_HPD={559.672,1676.36}]:332.395675,hind1269[&index=16]:1528.461412)[&index=100,posterior=1.000000,age_95%_HPD={1128.06,2143.36}]:219.300611,((bagr1243[&index=12]:304.115595)dhun1238[&index=101,posterior=0.328431,age_95%_HPD={206.569,388.029},sampled_ancestor=0.700980]:878.330214,(marw1260[&index=14]:485.234715,mewa1249[&index=13]:485.234715)[&index=102,posterior=0.328431,age_95%_HPD={7.81909,1046.96}]:697.211093)[&index=103,posterior=1.000000,age_95%_HPD={509.263,1971.18}]:565.316215)[&index=104,posterior=1.000000,age_95%_HPD={1303.18,2310.9}]:60.747591,((panj1256[&index=11]:955.453365,sera1259[&index=10]:955.453365)[&index=105,posterior=1.000000,age_95%_HPD={190.798,1586.64}]:329.150549,sind1272[&index=9]:1284.603913)[&index=106,posterior=1.000000,age_95%_HPD={505.253,2006.06}]:523.905701)[&index=107,posterior=0.671569,age_95%_HPD={1429.1,2376.17}]:141.489959,((((assa1263[&index=22]:572.230588,beng1280[&index=21]:572.230588)[&index=108,posterior=0.642157,age_95%_HPD={296.214,851.572}]:392.253253,nepa1254[&index=20]:964.483842)[&index=109,posterior=0.568627,age_95%_HPD={552.08,1337.7}]:125.682140,oriy1255[&index=24]:1090.165981)[&index=110,posterior=0.416667,age_95%_HPD={635.504,1434.72}]:468.867740,((awad1243[&index=23]:376.664080,mait1250[&index=26]:376.664080)[&index=111,posterior=0.411765,age_95%_HPD={1.33554,945.714}]:515.087422,bhoj1244[&index=25]:891.751501)[&index=112,posterior=0.539216,age_95%_HPD={283.762,1456.77}]:667.282220)[&index=113,posterior=1.000000,age_95%_HPD={1122.72,2177.53}]:390.965851)[&index=114,posterior=0.740196,age_95%_HPD={1614.78,2504.73}]:359.974551,((guja1252[&index=32]:1581.015187,saur1248[&index=31]:1581.015187)[&index=115,posterior=1.000000,age_95%_HPD={836.853,2319.07}]:219.199710,(konk1267[&index=28]:1396.218340,mara1378[&index=27]:1396.218340)[&index=116,posterior=1.000000,age_95%_HPD={772.439,2161.33}]:403.996557)[&index=117,posterior=0.455882,age_95%_HPD={1309.91,2402.05}]:509.759226)[&index=118,posterior=0.509804,age_95%_HPD={1817.02,2722.44}]:429.382087,(((dhiv1236[&index=30]:983.746425,sinh1246[&index=29]:983.746425)[&index=119,posterior=1.000000,age_95%_HPD={425.808,1853.32}]:1183.764970)maha1305[&index=120,posterior=0.200980,age_95%_HPD={2037.47,2288.58},sampled_ancestor=0.774510]:397.535186,pali1273[&index=33,sampled_ancestor=0.171569,age_95%_HPD={2003.71,2273.22}]:432.220940)[&index=121,posterior=0.362745,age_95%_HPD={2331.18,2769.59}]:174.309631)[&index=122,posterior=1.000000,age_95%_HPD={2506.08,2984.5}]:63.941095,((((indu1241[&index=7]:719.755253,shin1264[&index=8]:719.755253)[&index=123,posterior=0.264706,age_95%_HPD={388.316,1155.92}]:456.197342,torw1241[&index=6]:1175.952595)[&index=124,posterior=0.960784,age_95%_HPD={645.886,1869.08}]:532.982368,((kala1372[&index=3]:749.978286,khow1242[&index=4]:749.978286)[&index=125,posterior=1.000000,age_95%_HPD={294.662,1226.93}]:605.638574,phal1254[&index=5]:1355.616860)[&index=126,posterior=1.000000,age_95%_HPD={684.86,2012.29}]:353.318103)[&index=127,posterior=0.710784,age_95%_HPD={1063.96,2309.74}]:409.425523,kash1277[&index=2]:2118.360485)[&index=128,posterior=1.000000,age_95%_HPD={1590.33,2711.62}]:684.936820)[&index=129,posterior=1.000000,age_95%_HPD={2580.04,3075.54}]:490.885199)sans1269[&index=130,posterior=1.000000,age_95%_HPD={3117.73,3399.52},sampled_ancestor=1.000000]:507.815037)[&index=131,posterior=1.000000,age_95%_HPD={3694.39,3863.52}]:0.000000;
+End;
