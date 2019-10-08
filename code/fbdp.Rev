@@ -100,7 +100,7 @@ num_samp_anc := tree.numSampledAncestors();
 
 # Relaxed clock
 
-branch_rates_mean ~ dnExponential(10.0)
+branch_rates_mean ~ dnLognormal(-10.0, 0.1)
 
 moves.append( mvScale(branch_rates_mean, lambda=0.01, weight=1.0) )
 moves.append( mvScale(branch_rates_mean, lambda=0.1,  weight=1.0) )
@@ -175,16 +175,18 @@ mymodel = model(seq)
 monitors = VectorMonitors()
 
 thinning = 100
-monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning) )
+monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning, branch_rates_mean) )
 
 monitors.append( mnFile(filename="output/indoiranian.trees", printgen=thinning, tree) )
 
-monitors.append( mnScreen(printgen=thinning, rho, num_samp_anc, origin_time) )
+monitors.append( mnScreen(printgen=thinning, rho, num_samp_anc, branch_rates_mean, origin_time) )
 
 mymcmc = mcmc(mymodel, monitors, moves, nruns=4)
 
 mymcmc.burnin(1000, tuningInterval=100)
-mymcmc.run(generations=10000)
+mymcmc.run(generations=100000, tuningInterval=1000)
+
+mymcmc.operatorSummary()
 
 treeTrace = readTreeTrace("output/indoiranian.trees")
 
