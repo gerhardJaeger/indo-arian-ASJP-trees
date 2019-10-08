@@ -14,30 +14,30 @@ moves = VectorMoves()
 speciation_rate ~ dnExponential(10000)
 extinction_rate ~ dnExponential(10000)
 
-moves.append( mvScale(speciation_rate, lambda=0.01, weight=1) )
-moves.append( mvScale(speciation_rate, lambda=0.1,  weight=1) )
-moves.append( mvScale(speciation_rate, lambda=1.0,  weight=1) )
+moves.append( mvScale(speciation_rate, lambda=0.01, weight=1, tune=FALSE) )
+moves.append( mvScale(speciation_rate, lambda=0.1,  weight=1, tune=FALSE) )
+moves.append( mvScale(speciation_rate, lambda=1.0,  weight=1, tune=FALSE) )
 
-moves.append( mvScale(extinction_rate, lambda=0.01, weight=1) )
-moves.append( mvScale(extinction_rate, lambda=0.1,  weight=1) )
-moves.append( mvScale(extinction_rate, lambda=1,    weight=1) )
+moves.append( mvScale(extinction_rate, lambda=0.01, weight=1, tune=FALSE) )
+moves.append( mvScale(extinction_rate, lambda=0.1,  weight=1, tune=FALSE) )
+moves.append( mvScale(extinction_rate, lambda=1,    weight=1, tune=FALSE) )
 
 rho ~ dnBeta(5, 5)
-moves.append( mvScale(rho, lambda=0.01, weight=1) )
-moves.append( mvScale(rho, lambda=0.1,  weight=1) )
-moves.append( mvScale(rho, lambda=1,    weight=1) )
+moves.append( mvScale(rho, lambda=0.01, weight=1, tune=FALSE) )
+moves.append( mvScale(rho, lambda=0.1,  weight=1, tune=FALSE) )
+moves.append( mvScale(rho, lambda=1,    weight=1, tune=FALSE) )
 
 
 psi ~ dnHalfNormal(0, 100)
 
-moves.append( mvScale(psi, lambda=0.01, weight=1) )
-moves.append( mvScale(psi, lambda=0.1,  weight=1) )
-moves.append( mvScale(psi, lambda=1,    weight=1) )
+moves.append( mvScale(psi, lambda=0.01, weight=1, tune=FALSE) )
+moves.append( mvScale(psi, lambda=0.1,  weight=1, tune=FALSE) )
+moves.append( mvScale(psi, lambda=1,    weight=1, tune=FALSE) )
 
 origin_time ~ dnUniform(3.6, 3.9)
-moves.append( mvSlide(origin_time, delta=0.01, weight=5.0) )
-moves.append( mvSlide(origin_time, delta=0.1,  weight=5.0) )
-moves.append( mvSlide(origin_time, delta=1,    weight=5.0) )
+moves.append( mvSlide(origin_time, delta=0.01, weight=1.0, tune=FALSE) )
+moves.append( mvSlide(origin_time, delta=0.1,  weight=1.0, tune=FALSE) )
+moves.append( mvSlide(origin_time, delta=1,    weight=1.0, tune=FALSE) )
 
 
 
@@ -52,11 +52,11 @@ fbd_dist = dnFBDP(origin=origin_time*1000,
 tree ~ dnConstrainedTopology(fbd_dist, constraints=constraints)
 
 
-moves.append( mvFNPR(tree, weight=15.0) )
-moves.append( mvCollapseExpandFossilBranch(tree, origin_time, weight=6.0) )
+moves.append( mvFNPR(tree, weight=10.0) )
+moves.append( mvCollapseExpandFossilBranch(tree, origin_time, weight=10.0) )
 
-moves.append( mvNodeTimeSlideUniform(tree, weight=40.0) )
-moves.append( mvRootTimeSlideUniform(tree, origin_time, weight=5.0) )
+moves.append( mvNodeTimeSlideUniform(tree, weight=10.0) )
+moves.append( mvRootTimeSlideUniform(tree, origin_time, weight=10.0) )
 
 # tip calibration
 
@@ -69,7 +69,7 @@ for (i in 1:fossils.size()) {
   F[i].clamp( 0 )
 }
 
-moves.append( mvFossilTimeSlideUniform(tree, origin_time, weight=5.0) )
+moves.append( mvFossilTimeSlideUniform(tree, origin_time, weight=10.0) )
 
 # node calibration
 
@@ -102,33 +102,33 @@ num_samp_anc := tree.numSampledAncestors();
 
 branch_rates_mean ~ dnLognormal(-10.0, 0.1)
 
-moves.append( mvScale(branch_rates_mean, lambda=0.01, weight=1.0) )
-moves.append( mvScale(branch_rates_mean, lambda=0.1,  weight=1.0) )
-moves.append( mvScale(branch_rates_mean, lambda=1.0,  weight=1.0) )
+moves.append( mvScale(branch_rates_mean, lambda=0.01, weight=1.0, tune=FALSE) )
+moves.append( mvScale(branch_rates_mean, lambda=0.1,  weight=1.0, tune=FALSE) )
+moves.append( mvScale(branch_rates_mean, lambda=1.0,  weight=1.0, tune=FALSE) )
 
 n_branches <- 2 * n_taxa - 2
 
 for (i in 1:n_branches) {
   branch_rates[i] ~ dnExp(1/branch_rates_mean)
-  moves.append( mvScale(branch_rates[i], lambda=1.0,  weight=1.0) )
-  moves.append( mvScale(branch_rates[i], lambda=0.1,  weight=1.0) )
-  moves.append( mvScale(branch_rates[i], lambda=0.01, weight=1.0) )
+  moves.append( mvScale(branch_rates[i], lambda=1.0,  weight=1.0, tune=FALSE) )
+  moves.append( mvScale(branch_rates[i], lambda=0.1,  weight=1.0, tune=FALSE) )
+  moves.append( mvScale(branch_rates[i], lambda=0.01, weight=1.0, tune=FALSE) )
 }
 
-moves.append( mvVectorScale(branch_rates, lambda=0.01, weight=4.0) )
-moves.append( mvVectorScale(branch_rates, lambda=0.1,  weight=4.0) )
-moves.append( mvVectorScale(branch_rates, lambda=1.0,  weight=4.0) )
+moves.append( mvVectorScale(branch_rates, lambda=0.01, weight=1.0, tune=FALSE) )
+moves.append( mvVectorScale(branch_rates, lambda=0.1,  weight=1.0, tune=FALSE) )
+moves.append( mvVectorScale(branch_rates, lambda=1.0,  weight=1.0, tune=FALSE) )
 
 
 ## Model of character evolution
 
 part_rate_mult ~ dnDirichlet(v(1, 1))
-moves.append(mvBetaSimplex(part_rate_mult, tune=FALSE, alpha=0.1))
-moves.append(mvBetaSimplex(part_rate_mult, tune=FALSE, alpha=1))
-moves.append(mvBetaSimplex(part_rate_mult, tune=FALSE, alpha=10))
-moves.append(mvDirichletSimplex(part_rate_mult, tune=FALSE, alpha=0.1))
-moves.append(mvDirichletSimplex(part_rate_mult, tune=FALSE, alpha=1))
-moves.append(mvDirichletSimplex(part_rate_mult, tune=FALSE, alpha=10))
+moves.append(mvBetaSimplex(part_rate_mult, alpha=0.1, tune=FALSE))
+moves.append(mvBetaSimplex(part_rate_mult, alpha=1, tune=FALSE))
+moves.append(mvBetaSimplex(part_rate_mult, alpha=10, tune=FALSE))
+moves.append(mvDirichletSimplex(part_rate_mult, alpha=0.1, tune=FALSE))
+moves.append(mvDirichletSimplex(part_rate_mult, alpha=1, tune=FALSE))
+moves.append(mvDirichletSimplex(part_rate_mult, alpha=10, tune=FALSE))
 
 part_rate := part_rate_mult * 2
 
@@ -142,19 +142,19 @@ coding = ["variable", "all"]
 
 for (i in 1:2) {
   pi[i] ~ dnDirichlet(v(1,1))
-  moves.append(mvBetaSimplex(pi[i], tune=FALSE, alpha=0.1))
-  moves.append(mvBetaSimplex(pi[i], tune=FALSE, alpha=1))
-  moves.append(mvBetaSimplex(pi[i], tune=FALSE, alpha=10))
-  moves.append(mvDirichletSimplex(pi[i], tune=FALSE, alpha=0.1))
-  moves.append(mvDirichletSimplex(pi[i], tune=FALSE, alpha=1))
-  moves.append(mvDirichletSimplex(pi[i], tune=FALSE, alpha=10))
+  moves.append(mvBetaSimplex(pi[i], alpha=0.1, tune=FALSE))
+  moves.append(mvBetaSimplex(pi[i], alpha=1, tune=FALSE))
+  moves.append(mvBetaSimplex(pi[i], alpha=10, tune=FALSE))
+  moves.append(mvDirichletSimplex(pi[i], alpha=0.1, tune=FALSE))
+  moves.append(mvDirichletSimplex(pi[i], alpha=1, tune=FALSE))
+  moves.append(mvDirichletSimplex(pi[i], alpha=10, tune=FALSE))
   Q[i]:= fnGTR(simplex(v(1)),pi[i])
   alpha_prior_mean[i] <- ln(5.0)
   alpha_prior_sd[i] <- 0.587405
   alpha[i] ~ dnLognormal(alpha_prior_mean[i], alpha_prior_sd[i])
-  moves.append(mvScale(alpha[i], tune=FALSE, lambda=0.1))
-  moves.append(mvScale(alpha[i], tune=FALSE, lambda=1))
-  moves.append(mvScale(alpha[i], tune=FALSE, lambda=10))
+  moves.append(mvScale(alpha[i], lambda=0.1, tune=FALSE))
+  moves.append(mvScale(alpha[i], lambda=1, tune=FALSE))
+  moves.append(mvScale(alpha[i], lambda=10, tune=FALSE))
   gamma_rates[i] := fnDiscretizeGamma(alpha[i], alpha[i], 4)
   seq[i] ~ dnPhyloCTMC(tree=tree, Q=Q[i],
                        rootFrequencies=pi[i],
@@ -175,7 +175,7 @@ mymodel = model(seq)
 monitors = VectorMonitors()
 
 thinning = 100
-monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning, branch_rates_mean) )
+monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning) )
 
 monitors.append( mnFile(filename="output/indoiranian.trees", printgen=thinning, tree) )
 
@@ -185,8 +185,8 @@ monitors.append(mnStochasticVariable(filename="output/indoiranian.var", printgen
 
 mymcmc = mcmc(mymodel, monitors, moves, nruns=4)
 
-mymcmc.burnin(1000, tuningInterval=100)
-mymcmc.run(generations=100000, tuningInterval=1000)
+#mymcmc.burnin(1000, tuningInterval=100)
+mymcmc.run(generations=10000)
 
 mymcmc.operatorSummary()
 
