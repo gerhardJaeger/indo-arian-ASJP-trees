@@ -204,7 +204,7 @@ mymodel = model(seq)
 
 monitors = VectorMonitors()
 
-thinning = 100
+thinning = 1000
 monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning) )
 
 monitors.append( mnFile(filename="output/indoiranian.trees", printgen=thinning, tree) )
@@ -215,7 +215,7 @@ monitors.append(mnStochasticVariable(filename="output/indoiranian.var", printgen
 
 mymcmc = mcmc(mymodel, monitors, moves, nruns=4)
 
-mymcmc.run(generations=10000)
+mymcmc.run(generations=1000000)
 
 mymcmc.operatorSummary()
 
