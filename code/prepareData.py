@@ -99,10 +99,10 @@ asjpCC = asjpCC[asjpCC.doculect.isin(asjp.names)]
 
 asjpCC = asjpCC[asjpCC.glottocode.isin(indoiranian.glottocode.values)]
 
-ctree = Tree('../data/constraint3.tre')
+ctree = Tree('../data/constraint4.tre')
 ctree.ladderize()
 
-taxa = indoiranian.glottocode.unique()
+taxa = np.array(ctree.get_leaf_names())
 
 ccMtx = pd.DataFrame(index=taxa)
 for c in concepts:
@@ -112,6 +112,8 @@ for c in concepts:
     cMtx = cMtx.reindex(taxa, fill_value='-')
     ccMtx = pd.concat([ccMtx, cMtx], axis=1)
 
+nexCharOutput(ccMtx, '../data/indoiranian.cc.nex', datatype="Standard")
+    
 scMtx = pd.DataFrame(index=taxa)
 for c in concepts:
     cData = asjpCC[asjpCC.concept == c]
@@ -128,10 +130,12 @@ for c in concepts:
                                                            fill_value='-')
     scMtx = pd.concat([scMtx, cMtx], axis=1)
 
-n, m = ccMtx.shape[1], scMtx.shape[1]
-cc_sc = pd.concat([ccMtx, scMtx], axis=1)
+nexCharOutput(scMtx, '../data/indoiranian.sc.nex', datatype="Standard")
+    
+# n, m = ccMtx.shape[1], scMtx.shape[1]
+# cc_sc = pd.concat([ccMtx, scMtx], axis=1)
 
-nexCharOutput(cc_sc, 'indoiranian.nex', datatype='restriction')
+# nexCharOutput(cc_sc, 'indoiranian.nex', datatype='restriction')
 
 nodes = np.array([nd for nd in ctree.get_descendants()
                   if not nd.is_root() and not nd.is_leaf()])
