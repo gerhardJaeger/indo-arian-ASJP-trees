@@ -12,8 +12,10 @@ n_taxa <- taxa.size()
 
 moves = VectorMoves()
 
-speciation_rate ~ dnExp(1000)
-extinction_rate ~ dnExp(1000)
+speciation_rate ~ dnLognormal(-7, 10)
+speciation_rate.setValue(0.0003)
+extinction_rate ~ dnLognormal(-7, 10)
+extinction_rate.setValue(0.0005)
 
 moves.append( mvScale(speciation_rate, lambda=0.1,  weight=1, tune=FALSE) )
 moves.append( mvScale(speciation_rate, lambda=1,    weight=1, tune=FALSE) )
@@ -124,12 +126,9 @@ obs_pir_age ~ dnUnif(pir_age - 3500, pir_age - 3300)
 obs_pir_age.clamp(0)
 
 
-num_samp_anc := tree.numSampledAncestors();
-
-
 ## # Relaxed clock
 
-branch_rates_mean ~ dnLognormal(-10.0, 0.1)
+branch_rates_mean ~ dnLognormal(-10.0, 10)
 
 moves.append( mvScale(branch_rates_mean, lambda=0.1,  weight=1.0, tune=FALSE) )
 moves.append( mvScale(branch_rates_mean, lambda=1.0,  weight=1.0, tune=FALSE) )
@@ -180,7 +179,7 @@ for (i in 1:2) {
   moves.append(mvDirichletSimplex(pi[i], alpha=10, tune=FALSE))
   Q[i]:= fnGTR(simplex(v(1)),pi[i])
   alpha_prior_mean[i] <- ln(5.0)
-  alpha_prior_sd[i] <- 0.587405
+  alpha_prior_sd[i] <- 10#0.587405
   alpha[i] ~ dnLognormal(alpha_prior_mean[i], alpha_prior_sd[i])
   moves.append(mvScale(alpha[i], lambda=0.1, tune=FALSE))
   moves.append(mvScale(alpha[i], lambda=1, tune=FALSE))
@@ -195,42 +194,32 @@ for (i in 1:2) {
 }
 
 
+
 seq[1].clamp(cc)
 seq[2].clamp(sc)
 
+
+nNodes = 2*n_taxa-1
+for (i in 1:nNodes) {
+  nodeAge[i] := tree.nodeAge(i)
+}
 
 
 mymodel = model(seq)
 
 monitors = VectorMonitors()
 
-thinning = 1000
+thinning = 100
 monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning) )
 
 monitors.append( mnFile(filename="output/indoiranian.trees", printgen=thinning, tree) )
 
-monitors.append( mnScreen(printgen=thinning, num_samp_anc))
+monitors.append( mnScreen(printgen=thinning))
 
 monitors.append(mnStochasticVariable(filename="output/indoiranian.var", printgen=thinning))
 
 mymcmc = mcmc(mymodel, monitors, moves, nruns=4)
 
-mymcmc.run(generations=1000000)
-
-mymcmc.operatorSummary()
-
-tt1 = readTreeTrace("output/indoiranian_run_1.trees", burnin=0.5).getTrees()
-tt2 = readTreeTrace("output/indoiranian_run_2.trees", burnin=0.5).getTrees()
-tt3 = readTreeTrace("output/indoiranian_run_3.trees", burnin=0.5).getTrees()
-tt4 = readTreeTrace("output/indoiranian_run_4.trees", burnin=0.5).getTrees()
-
-tt = tt1
-tt.append(tt2)
-tt.append(tt3)
-tt.append(tt4)
-
-mcc = mccTree(treeTrace(tt, burnin=0), file = "output/indoiranian.mcc.tre")
-ct = consensusTree(treeTrace(tt, burnin=0), file = "output/indoiranian.con.tre")
-map = mapTree(treeTrace(tt, burnin=0), file = "output/indoiranian.map.tre")
+mymcmc.run(generations=1E7)
 
 q()
