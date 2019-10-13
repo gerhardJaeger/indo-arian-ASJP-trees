@@ -1,4 +1,4 @@
-seed(12345)
+seed(1234)
 
 taxa <- readTaxonData("../data/indoiranian_taxa.tsv")
 
@@ -54,6 +54,11 @@ moves.append( mvCollapseExpandFossilBranch(tree, origin_time, weight=10.0) )
 
 moves.append( mvNodeTimeSlideUniform(tree, weight=10.0) )
 moves.append( mvRootTimeSlideUniform(tree, origin_time, weight=10.0) )
+
+moves.append( mvNNI(tree, weight=10.0))
+moves.append( mvNarrow(tree, weight=10.0))
+
+
 
 # tip calibration
 
@@ -128,44 +133,43 @@ obs_pir_age.clamp(0)
 
 ## # Relaxed clock
 
-branch_rates_mean ~ dnLognormal(-10.0, 10)
-
-moves.append( mvScale(branch_rates_mean, lambda=0.1,  weight=1.0, tune=FALSE) )
-moves.append( mvScale(branch_rates_mean, lambda=1.0,  weight=1.0, tune=FALSE) )
-moves.append( mvScale(branch_rates_mean, lambda=10,  weight=1.0, tune=FALSE) )
-
 n_branches <- 2 * n_taxa - 2
 
-for (i in 1:n_branches) {
-  branch_rates[i] ~ dnExp(1/branch_rates_mean)
-  moves.append( mvScale(branch_rates[i], lambda=0.1,  weight=1.0, tune=FALSE) )
-  moves.append( mvScale(branch_rates[i], lambda=1.0,  weight=1.0, tune=FALSE) )
-  moves.append( mvScale(branch_rates[i], lambda=10,  weight=1.0, tune=FALSE) )
+for (i in 1:2) {
+  branch_rates_mean[i] ~ dnLognormal(-10.0, 10)
+  
+  moves.append( mvScale(branch_rates_mean[i], lambda=0.1,  weight=1.0, tune=FALSE) )
+  moves.append( mvScale(branch_rates_mean[i], lambda=1.0,  weight=1.0, tune=FALSE) )
+  moves.append( mvScale(branch_rates_mean[i], lambda=10,  weight=1.0, tune=FALSE) )
 
+  for (j in 1:n_branches) {
+    branch_rates[i][j] ~ dnExp(1/branch_rates_mean[i])
+    moves.append( mvScale(branch_rates[i][j], lambda=0.1,  weight=1.0, tune=FALSE) )
+    moves.append( mvScale(branch_rates[i][j], lambda=1.0,  weight=1.0, tune=FALSE) )
+    moves.append( mvScale(branch_rates[i][j], lambda=10,  weight=1.0, tune=FALSE) )
+  }
+  moves.append( mvVectorScale(branch_rates[i], lambda=0.1,  weight=1.0, tune=FALSE) )
+  moves.append( mvVectorScale(branch_rates[i], lambda=1.0,  weight=1.0, tune=FALSE) )
+  moves.append( mvVectorScale(branch_rates[i], lambda=10,  weight=1.0, tune=FALSE) )
 }
-
-moves.append( mvVectorScale(branch_rates, lambda=0.1,  weight=1.0, tune=FALSE) )
-moves.append( mvVectorScale(branch_rates, lambda=1.0,  weight=1.0, tune=FALSE) )
-moves.append( mvVectorScale(branch_rates, lambda=10,  weight=1.0, tune=FALSE) )
-
 
 ## Model of character evolution
 
-part_rate_mult ~ dnDirichlet(v(1, 1))
-moves.append(mvBetaSimplex(part_rate_mult, alpha=0.1, tune=FALSE))
-moves.append(mvBetaSimplex(part_rate_mult, alpha=1, tune=FALSE))
-moves.append(mvBetaSimplex(part_rate_mult, alpha=10, tune=FALSE))
-moves.append(mvDirichletSimplex(part_rate_mult, alpha=0.1, tune=FALSE))
-moves.append(mvDirichletSimplex(part_rate_mult, alpha=1, tune=FALSE))
-moves.append(mvDirichletSimplex(part_rate_mult, alpha=10, tune=FALSE))
+## part_rate_mult ~ dnDirichlet(v(2, 4))
+## moves.append(mvBetaSimplex(part_rate_mult, alpha=0.1, tune=FALSE))
+## moves.append(mvBetaSimplex(part_rate_mult, alpha=1, tune=FALSE))
+## moves.append(mvBetaSimplex(part_rate_mult, alpha=10, tune=FALSE))
+## moves.append(mvDirichletSimplex(part_rate_mult, alpha=0.1, tune=FALSE))
+## moves.append(mvDirichletSimplex(part_rate_mult, alpha=1, tune=FALSE))
+## moves.append(mvDirichletSimplex(part_rate_mult, alpha=10, tune=FALSE))
 
-part_rate := part_rate_mult * 2
+## part_rate := part_rate_mult * 2
 
-for (i in 1:2) {
-  for (j in 1:n_branches) {
-    br[i][j] := part_rate[i]*branch_rates[j]
-  }
-}
+## for (i in 1:2) {
+##   for (j in 1:n_branches) {
+##     br[i][j] := part_rate[i]*branch_rates[i][j]
+##   }
+## }
 
 coding = ["variable", "all"]
 
@@ -179,7 +183,7 @@ for (i in 1:2) {
   moves.append(mvDirichletSimplex(pi[i], alpha=10, tune=FALSE))
   Q[i]:= fnGTR(simplex(v(1)),pi[i])
   alpha_prior_mean[i] <- ln(5.0)
-  alpha_prior_sd[i] <- 10#0.587405
+  alpha_prior_sd[i] <- 0.587405
   alpha[i] ~ dnLognormal(alpha_prior_mean[i], alpha_prior_sd[i])
   moves.append(mvScale(alpha[i], lambda=0.1, tune=FALSE))
   moves.append(mvScale(alpha[i], lambda=1, tune=FALSE))
@@ -187,13 +191,16 @@ for (i in 1:2) {
   gamma_rates[i] := fnDiscretizeGamma(alpha[i], alpha[i], 4)
   seq[i] ~ dnPhyloCTMC(tree=tree, Q=Q[i],
                        rootFrequencies=pi[i],
-                       branchRates=br[i],
+                       branchRates=branch_rates[i],
                        siteRates=gamma_rates[i],
                        type="Standard",
                        coding=coding[i])
 }
 
-
+pi1 := pi[1]
+pi2 := pi[2]
+branch_rates1 := branch_rates[1]
+branch_rates2 := branch_rates[2]
 
 seq[1].clamp(cc)
 seq[2].clamp(sc)
@@ -209,7 +216,7 @@ mymodel = model(seq)
 
 monitors = VectorMonitors()
 
-thinning = 100
+thinning = 10
 monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning) )
 
 monitors.append( mnFile(filename="output/indoiranian.trees", printgen=thinning, tree) )
@@ -218,8 +225,10 @@ monitors.append( mnScreen(printgen=thinning))
 
 monitors.append(mnStochasticVariable(filename="output/indoiranian.var", printgen=thinning))
 
-mymcmc = mcmc(mymodel, monitors, moves, nruns=4)
+mymcmc = mcmcmc(mymodel, monitors, moves, nruns=2, nchains=2)
 
-mymcmc.run(generations=1E7)
+mymcmc.run(generations=1000)
+
+mymcmc.operatorSummary()
 
 q()
