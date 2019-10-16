@@ -1,4 +1,4 @@
-tt = treeTrace(readTrees("indoiranian.posterior.tree"), burnin=0)
+tt = treeTrace(readTrees("../data/indoiranian.posterior.tree"), burnin=0)
 
 mcc = mccTree(treeTrace(tt, burnin=0), file = "../data/indoiranian.mcc.tre")
 ct = consensusTree(treeTrace(tt, burnin=0), file = "../data/indoiranian.con.tre")
