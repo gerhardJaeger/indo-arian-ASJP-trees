@@ -1,12 +1,8 @@
-tt1 = readTreeTrace("output/indoiranian_run_1.trees", burnin=0.5).getTrees()
-tt2 = readTreeTrace("output/indoiranian_run_2.trees", burnin=0.5).getTrees()
-tt3 = readTreeTrace("output/indoiranian_run_3.trees", burnin=0.5).getTrees()
-tt4 = readTreeTrace("output/indoiranian_run_4.trees", burnin=0.5).getTrees()
+tt1 = readTreeTrace("output/indoiranian_run_1.trees", burnin=0).getTrees()
+tt2 = readTreeTrace("output/indoiranian_run_2.trees", burnin=0).getTrees()
 
 tt = tt1
 tt.append(tt2)
-tt.append(tt3)
-tt.append(tt4)
 
 mcc = mccTree(treeTrace(tt, burnin=0), file = "output/indoiranian.mcc.tre")
 ct = consensusTree(treeTrace(tt, burnin=0), file = "output/indoiranian.con.tre")
