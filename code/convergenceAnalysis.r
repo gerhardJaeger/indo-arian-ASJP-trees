@@ -114,5 +114,5 @@ rownames(partition.frequencies) <- 1:nrow(partition.frequencies)
 print(mean(apply(partition.frequencies[,1:2] / n, 1, sd)))
 
 for (t in c(trees1[1:n], trees2[1:n])) {
-    write.tree(t, file = 'indoiranian.posterior.tree', append=T)
+    write.tree(t, file = '../data/indoiranian.posterior.tree', append=T)
 }

@@ -1,11 +1,7 @@
-tt1 = readTreeTrace("output/indoiranian_run_1.trees", burnin=0).getTrees()
-tt2 = readTreeTrace("output/indoiranian_run_2.trees", burnin=0).getTrees()
+tt = treeTrace(readTrees("indoiranian.posterior.tree"), burnin=0)
 
-tt = tt1
-tt.append(tt2)
-
-mcc = mccTree(treeTrace(tt, burnin=0), file = "output/indoiranian.mcc.tre")
-ct = consensusTree(treeTrace(tt, burnin=0), file = "output/indoiranian.con.tre")
-map = mapTree(treeTrace(tt, burnin=0), file = "output/indoiranian.map.tre")
+mcc = mccTree(treeTrace(tt, burnin=0), file = "../data/indoiranian.mcc.tre")
+ct = consensusTree(treeTrace(tt, burnin=0), file = "../data/indoiranian.con.tre")
+map = mapTree(treeTrace(tt, burnin=0), file = "../data/indoiranian.map.tre")
 
 q()
