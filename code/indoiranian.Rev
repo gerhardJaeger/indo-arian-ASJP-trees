@@ -20,16 +20,19 @@ extinction_rate.setValue(0.0005)
 moves.append( mvScale(speciation_rate, lambda=0.1,  weight=1, tune=FALSE) )
 moves.append( mvScale(speciation_rate, lambda=1,    weight=1, tune=FALSE) )
 moves.append( mvScale(speciation_rate, lambda=10,    weight=1, tune=FALSE) )
+moves.append( mvScale(speciation_rate, lambda=1,    weight=1, tune=TRUE) )
 
 moves.append( mvScale(extinction_rate, lambda=0.1,  weight=1, tune=FALSE) )
 moves.append( mvScale(extinction_rate, lambda=1,    weight=1, tune=FALSE) )
 moves.append( mvScale(extinction_rate, lambda=10,    weight=1, tune=FALSE) )
+moves.append( mvScale(extinction_rate, lambda=1,    weight=1, tune=TRUE) )
 
 
 rho ~ dnBeta(1, 1)
 moves.append( mvScale(rho, lambda=0.1,  weight=1, tune=FALSE) )
 moves.append( mvScale(rho, lambda=1,    weight=1, tune=FALSE) )
 moves.append( mvScale(rho, lambda=10,    weight=1, tune=FALSE) )
+moves.append( mvScale(rho, lambda=1,    weight=1, tune=TRUE) )
 
 
 origin_time ~ dnUniform(3.6, 3.9)
@@ -37,6 +40,7 @@ origin_time ~ dnUniform(3.6, 3.9)
 moves.append( mvSlide(origin_time, delta=0.1,  weight=1.0, tune=FALSE) )
 moves.append( mvSlide(origin_time, delta=1,    weight=1.0, tune=FALSE) )
 moves.append( mvSlide(origin_time, delta=10,    weight=1.0, tune=FALSE) )
+moves.append( mvSlide(origin_time, delta=1,    weight=1.0, tune=TRUE) )
 
 
 
@@ -49,14 +53,17 @@ bd_dist = dnBDP(rootAge=origin_time*1000,
 
 tree ~ dnConstrainedTopology(bd_dist, constraints=constraints)
 
-moves.append( mvFNPR(tree, weight=10.0) )
+
 moves.append( mvCollapseExpandFossilBranch(tree, origin_time, weight=10.0) )
 
 moves.append( mvNodeTimeSlideUniform(tree, weight=10.0) )
 moves.append( mvRootTimeSlideUniform(tree, origin_time, weight=10.0) )
 
-moves.append( mvNNI(tree, weight=10.0))
-moves.append( mvNarrow(tree, weight=10.0))
+moves.append( mvNNI(tree, weight=50))
+moves.append( mvNarrow(tree, weight=50))
+moves.append( mvFNPR(tree, weight=50) )
+
+
 
 
 
@@ -135,22 +142,38 @@ obs_pir_age.clamp(0)
 
 n_branches <- 2 * n_taxa - 2
 
+mu ~ dnNormal(-7, 10)
+moves.append(mvSlide(mu, delta=0.1, weight=1.0, tune=FALSE))
+moves.append(mvSlide(mu, delta=1, weight=1.0, tune=FALSE))
+moves.append(mvSlide(mu, delta=10, weight=1.0, tune=FALSE))
+moves.append(mvSlide(mu, delta=1, weight=1.0, tune=TRUE))
+
+sigma ~ dnExp(1)
+moves.append( mvScale(sigma, lambda=0.1,  weight=1.0, tune=FALSE) )
+moves.append( mvScale(sigma, lambda=1.0,  weight=1.0, tune=FALSE) )
+moves.append( mvScale(sigma, lambda=10,  weight=1.0, tune=FALSE) )
+moves.append( mvScale(sigma, lambda=1,  weight=1.0, tune=TRUE) )
+
+
 for (i in 1:2) {
-  branch_rates_mean[i] ~ dnLognormal(-10.0, 10)
+  branch_rates_mean[i] ~ dnLognormal(mu, sigma)
   
   moves.append( mvScale(branch_rates_mean[i], lambda=0.1,  weight=1.0, tune=FALSE) )
   moves.append( mvScale(branch_rates_mean[i], lambda=1.0,  weight=1.0, tune=FALSE) )
   moves.append( mvScale(branch_rates_mean[i], lambda=10,  weight=1.0, tune=FALSE) )
+    moves.append( mvScale(branch_rates_mean[i], lambda=1,  weight=1.0, tune=TRUE) )
 
   for (j in 1:n_branches) {
     branch_rates[i][j] ~ dnExp(1/branch_rates_mean[i])
     moves.append( mvScale(branch_rates[i][j], lambda=0.1,  weight=1.0, tune=FALSE) )
     moves.append( mvScale(branch_rates[i][j], lambda=1.0,  weight=1.0, tune=FALSE) )
     moves.append( mvScale(branch_rates[i][j], lambda=10,  weight=1.0, tune=FALSE) )
+    moves.append( mvScale(branch_rates[i][j], lambda=1,  weight=1.0, tune=TRUE) )
   }
   moves.append( mvVectorScale(branch_rates[i], lambda=0.1,  weight=1.0, tune=FALSE) )
   moves.append( mvVectorScale(branch_rates[i], lambda=1.0,  weight=1.0, tune=FALSE) )
   moves.append( mvVectorScale(branch_rates[i], lambda=10,  weight=1.0, tune=FALSE) )
+  moves.append( mvVectorScale(branch_rates[i], lambda=1,  weight=1.0, tune=TRUE) )
 }
 
 ## Model of character evolution
@@ -178,9 +201,11 @@ for (i in 1:2) {
   moves.append(mvBetaSimplex(pi[i], alpha=0.1, tune=FALSE))
   moves.append(mvBetaSimplex(pi[i], alpha=1, tune=FALSE))
   moves.append(mvBetaSimplex(pi[i], alpha=10, tune=FALSE))
+  moves.append(mvBetaSimplex(pi[i], alpha=1, tune=TRUE))
   moves.append(mvDirichletSimplex(pi[i], alpha=0.1, tune=FALSE))
   moves.append(mvDirichletSimplex(pi[i], alpha=1, tune=FALSE))
   moves.append(mvDirichletSimplex(pi[i], alpha=10, tune=FALSE))
+    moves.append(mvDirichletSimplex(pi[i], alpha=1, tune=TRUE))
   Q[i]:= fnGTR(simplex(v(1)),pi[i])
   alpha_prior_mean[i] <- ln(5.0)
   alpha_prior_sd[i] <- 0.587405
@@ -188,6 +213,7 @@ for (i in 1:2) {
   moves.append(mvScale(alpha[i], lambda=0.1, tune=FALSE))
   moves.append(mvScale(alpha[i], lambda=1, tune=FALSE))
   moves.append(mvScale(alpha[i], lambda=10, tune=FALSE))
+  moves.append(mvScale(alpha[i], lambda=1, tune=TRUE))
   gamma_rates[i] := fnDiscretizeGamma(alpha[i], alpha[i], 4)
   seq[i] ~ dnPhyloCTMC(tree=tree, Q=Q[i],
                        rootFrequencies=pi[i],
@@ -211,15 +237,14 @@ for (i in 1:nNodes) {
   nodeAge[i] := tree.nodeAge(i)
 }
 
-
 mymodel = model(seq)
 
 monitors = VectorMonitors()
 
-thinning = 10
+thinning = 20
 monitors.append( mnModel(filename="output/indoiranian.log", printgen=thinning) )
 
-monitors.append( mnFile(filename="output/indoiranian.trees", printgen=thinning, tree) )
+monitors.append(mnFile(filename="output/indoiranian.trees", printgen=thinning, tree))
 
 monitors.append( mnScreen(printgen=thinning))
 
@@ -227,7 +252,8 @@ monitors.append(mnStochasticVariable(filename="output/indoiranian.var", printgen
 
 mymcmc = mcmcmc(mymodel, monitors, moves, nruns=2, nchains=2)
 
-mymcmc.run(generations=1000)
+mymcmc.burnin(1000, tuningInterval=100)
+mymcmc.run(generations=1E7, tuningInterval=100)
 
 mymcmc.operatorSummary()
 
