@@ -1,0 +1,39 @@
+T <- readTrees("IIr_no_punct.trees")[1]
+
+
+taxa <- T.taxa()
+
+
+data <- readDiscreteCharacterData("states.nex")
+
+
+mvi = 0
+mni = 0
+
+D <- 4 #replace with a way to get it deterministically from number of states??
+
+for (i in 1:(D*(D-1))) {pi[i] ~ dnBeta(1,1)}
+for (i in 1:(D*(D-1))) {z[i] ~ dnBernoulli(pi[i])}
+for (i in 1:(D*(D-1))) {q[i] ~ dnGamma(1,1)}
+
+moves[1] = mvSlide(pi,delta=0.1,weight=1)
+moves[2] = mvSlide(z,delta=0.1,weight=1)
+moves[3] = mvSlide(q,delta=0.1,weight=1)
+
+
+for (i in 1:D) {for (j in 1:D) {rates[i][j] := 0 } }
+k := 1; for (i in 1:D) {for (j in 1:D) {if (i != j) {rates[i][j] += (q*z)[k]; k += 1} } }
+
+Q := fnFreeK(rates,rescaled=FALSE)
+
+seq ~ dnPhyloCTMC(tree=T, Q=Q, type="Standard")
+
+seq.clamp(data)
+
+mymodel = model(seq)
+
+
+
+
+monitors[1] = mnModel(filename="binomial_MCMC.log", printgen=10, separator = TAB)
+monitors[2] = mnScreen(printgen=100, p)

@@ -1,0 +1,198 @@
+seed(12345)
+modelName = "lognormal"
+
+d = readDiscreteCharacterData("states.nex")
+states = d.getStateDescriptions()
+trees = treeTrace(readTrees("IIr.tree", treetype="clock"), burnin=0)
+
+mni = 0
+mvi = 0
+
+tree ~ dnEmpiricalTree(trees)
+moves[++mvi] = mvEmpiricalTree(tree, weight=1, metropolisHastings=FALSE)
+
+
+## 1: (+clf,obl.pl)
+## 2: (+clf,opt.pl)
+## 3: (-clf,obl.pl)
+## 4: (-clf,opt.pl)
+## 5: (-clf,morph.pl)
+
+## direct transitions:
+## 1 -> 2
+## 1 -> 3
+## 2 -> 1
+## 2 -> 4
+## 3 -> 1
+## 3 -> 4
+## 3 -> 5
+## 4 -> 2
+## 4 -> 3
+## 4 -> 5
+## 5 -> 3
+## 5 -> 4
+
+
+r12 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r12)
+r13 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r13)
+r21 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r21)
+r24 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r24)
+r31 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r31)
+r34 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r34)
+r35 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r35)
+r42 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r42)
+r43 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r43)
+r45 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r45)
+r53 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r53)
+r54 ~ dnLognormal(0, 1)
+moves[++mvi] = mvScale(r54)
+
+## indirekt transitions:
+## 1 -> 4
+## 1 -> 5
+## 2 -> 3
+## 2 -> 5
+## 3 -> 2
+## 4 -> 1
+## 5 -> 1
+## 5 -> 2
+
+rho ~ dnBeta(1,1)
+moves[++mvi] = mvBetaProbability(rho)
+moves[++mvi] = mvSlide(rho)
+
+r14 ~ dnReversibleJumpMixture(0, dnLognormal(0, 1), rho)
+moves[++mvi] = mvRJSwitch(r14)
+moves[++mvi] = mvScale(r14)
+s14 := ifelse(r14==0, 0, 1)
+r15 ~ dnReversibleJumpMixture(0, dnLognormal(0, 1), rho)
+moves[++mvi] = mvRJSwitch(r15)
+moves[++mvi] = mvScale(r15)
+s15 := ifelse(r15==0, 0, 1)
+r23 ~ dnReversibleJumpMixture(0, dnLognormal(0, 1), rho)
+moves[++mvi] = mvRJSwitch(r23)
+moves[++mvi] = mvScale(r23)
+s23 := ifelse(r23==0, 0, 1)
+r25 ~ dnReversibleJumpMixture(0, dnLognormal(0, 1), rho)
+moves[++mvi] = mvRJSwitch(r25)
+moves[++mvi] = mvScale(r25)
+s25 := ifelse(r25==0, 0, 1)
+r32 ~ dnReversibleJumpMixture(0, dnLognormal(0, 1), rho)
+moves[++mvi] = mvRJSwitch(r32)
+moves[++mvi] = mvScale(r32)
+s32 := ifelse(r32==0, 0, 1)
+r41 ~ dnReversibleJumpMixture(0, dnLognormal(0, 1), rho)
+moves[++mvi] = mvRJSwitch(r41)
+moves[++mvi] = mvScale(r41)
+s41 := ifelse(r41==0, 0, 1)
+r51 ~ dnReversibleJumpMixture(0, dnLognormal(0, 1), rho)
+moves[++mvi] = mvRJSwitch(r51)
+moves[++mvi] = mvScale(r51)
+s51 := ifelse(r51==0, 0, 1)
+r52 ~ dnReversibleJumpMixture(0, dnLognormal(0, 1), rho)
+moves[++mvi] = mvRJSwitch(r52)
+moves[++mvi] = mvScale(r52)
+s52 := ifelse(r52==0, 0, 1)
+
+q[1][1] := 0
+q[1][2] := r12/1000
+q[1][3] := r13/1000
+q[1][4] := r14/1000
+q[1][5] := r15/1000
+
+q[1][1] := 0
+q[1][2] := r12/1000
+q[1][3] := r13/1000
+q[1][4] := r14/1000
+q[1][5] := r15/1000
+
+q[2][1] := r21/1000
+q[2][2] := 0
+q[2][3] := r23/1000
+q[2][4] := r24/1000
+q[2][5] := r25/1000
+
+q[3][1] := r31/1000
+q[3][2] := r32/1000
+q[3][3] := 0
+q[3][4] := r34/1000
+q[3][5] := r35/1000
+
+q[4][1] := r41/1000
+q[4][2] := r42/1000
+q[4][3] := r43/1000
+q[4][4] := 0
+q[4][5] := r45/1000
+
+q[5][1] := r51/1000
+q[5][2] := r52/1000
+q[5][3] := r53/1000
+q[5][4] := r54/1000
+q[5][5] := 0
+
+counter = 0
+for (i in 1:5) {
+  for (j in 1:5) {
+    if (i != j) {
+      rates[++counter] := q[i][j]*1000
+    }
+  }
+}
+
+switches := v(s14, s15, s23, s25, s32, s41, s51, s52)
+
+Q := fnFreeK(q, rescaled=FALSE)
+
+seq ~ dnPhyloCTMC(tree=tree, Q=Q, type="Standard")
+seq.clamp(d)
+
+mymodel = model(seq)
+
+thinning = 10
+
+monitors[++mni] = mnFile(filename="output/"+modelName+".p",
+                         printgen=thinning, rates, switches, rho)
+
+monitors[++mni] = mnFile(filename="output/"+modelName+".t",
+                         printgen=thinning, tree)
+
+monitors[++mni] = mnScreen(printgen=thinning)
+
+mymcmc = mcmcmc(mymodel, monitors, moves, nruns=4)
+
+#mymcmc.burnin(generations=2000, tuningInterval=100)
+
+#mymcmc.run(generations=20000)
+
+
+## stepping stone sampling
+
+pow_p = powerPosterior(mymodel, moves, monitors, "output/"+modelName+".out",
+                       cats=50)
+
+pow_p.burnin(generations=1000, tuningInterval=100)
+
+pow_p.run(generations=20000)
+
+ss = steppingStoneSampler(file="output/"+modelName+".out", powerColumnName="power",
+                          likelihoodColumnName="likelihood")
+
+ss.marginal()
+
+write(ss.marginal()+"\n",filename="output/"+modelName+"_marginal.txt")
+
+
+q()
+
+
