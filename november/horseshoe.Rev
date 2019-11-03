@@ -16,23 +16,9 @@ moves[++mvi] = mvEmpiricalTree(tree, weight=1, metropolisHastings=FALSE)
 ## 2: (+clf,opt.pl)
 ## 3: (-clf,obl.pl)
 ## 4: (-clf,opt.pl)
-## 5: (-clf,morph.pl)
+## 4: (-clf,morph.pl)
 
-## direct transitions:
-## 1 -> 2
-## 1 -> 3
-## 2 -> 1
-## 2 -> 4
-## 3 -> 1
-## 3 -> 4
-## 3 -> 5
-## 4 -> 2
-## 4 -> 3
-## 4 -> 5
-## 5 -> 3
-## 5 -> 4
-
-for (i in 1:20) {
+for (i in 1:12) {
   tau[i] ~ dnHalfCauchy(0, 1)
   moves[++mvi] = mvScale(tau[i])
   lambda[i] ~ dnHalfCauchy(0, 1)
@@ -47,8 +33,8 @@ for (i in 1:20) {
 Q := fnFreeK(q, rescaled=FALSE)
 
 counter = 0
-for (i in 1:5) {
-  for (j in 1:5) {
+for (i in 1:4) {
+  for (j in 1:4) {
     if (i != j) {
       rates[++counter] := Q[i][j]*1000
     }

@@ -7,7 +7,7 @@ colnames(d) <- c('language', 'state')
 ## 2: (+clf,opt.pl)
 ## 3: (-clf,obl.pl)
 ## 4: (-clf,opt.pl)
-## 5: (-clf,morph.pl)
+## 4: (-clf,morph.pl)
 
 ## direct transitions:
 ## 1 -> 2
@@ -16,25 +16,19 @@ colnames(d) <- c('language', 'state')
 ## 2 -> 4
 ## 3 -> 1
 ## 3 -> 4
-## 3 -> 5
 ## 4 -> 2
 ## 4 -> 3
-## 4 -> 5
-## 5 -> 3
-## 5 -> 4
+
 
 ## indirekt transitions:
 ## 1 -> 4
-## 1 -> 5
 ## 2 -> 3
-## 2 -> 5
 ## 3 -> 2
 ## 4 -> 1
-## 5 -> 1
-## 5 -> 2
 
 
-key <- 1:5
+
+key <- c(1:4, 4)
 names(key) <- c("(+clf,obl.pl)",
                 "(+clf,opt.pl)",
                 "(-clf,obl.pl)",
@@ -51,7 +45,7 @@ nexusHeader = paste0("#Nexus\n
 Begin Data;\n
 Dimensions ntax=", nrow(d),
 " nchar=1;\n
-Format Datatype=standard gap=? missing=- symbols=\"12345\";\n
+Format Datatype=standard gap=? missing=- symbols=\"1234\";\n
 Matrix")
 
 nexusFooter = ";\nEnd;\n"
