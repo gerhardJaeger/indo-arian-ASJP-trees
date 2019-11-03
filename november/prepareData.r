@@ -7,7 +7,7 @@ colnames(d) <- c('language', 'state')
 ## 2: (+clf,opt.pl)
 ## 3: (-clf,obl.pl)
 ## 4: (-clf,opt.pl)
-## 4: (-clf,morph.pl)
+## 3: (-clf,morph.pl)
 
 ## direct transitions:
 ## 1 -> 2
@@ -28,7 +28,7 @@ colnames(d) <- c('language', 'state')
 
 
 
-key <- c(1:4, 4)
+key <- c(1:4, 3)
 names(key) <- c("(+clf,obl.pl)",
                 "(+clf,opt.pl)",
                 "(-clf,obl.pl)",
