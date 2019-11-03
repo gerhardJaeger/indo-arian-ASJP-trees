@@ -159,7 +159,7 @@ seq.clamp(d)
 
 mymodel = model(seq)
 
-thinning = 10
+thinning = 100
 
 monitors[++mni] = mnFile(filename="output/"+modelName+".p",
                          printgen=thinning, rates, switches, rho)
@@ -169,28 +169,28 @@ monitors[++mni] = mnFile(filename="output/"+modelName+".t",
 
 monitors[++mni] = mnScreen(printgen=thinning)
 
-mymcmc = mcmcmc(mymodel, monitors, moves, nruns=4)
+mymcmc = mcmc(mymodel, monitors, moves, nruns=4)
 
-#mymcmc.burnin(generations=1000, tuningInterval=100)
+mymcmc.burnin(generations=1000, tuningInterval=100)
 
-#mymcmc.run(generations=10000)
+mymcmc.run(generations=100000)
 
 
 ## stepping stone sampling
 
-pow_p = powerPosterior(mymodel, moves, monitors, "output/"+modelName+".out",
-                       cats=50)
+## pow_p = powerPosterior(mymodel, moves, monitors, "output/"+modelName+".out",
+##                        cats=50)
 
-pow_p.burnin(generations=1000, tuningInterval=100)
+## pow_p.burnin(generations=1000, tuningInterval=100)
 
-pow_p.run(generations=10000)
+## pow_p.run(generations=10000)
 
-ss = steppingStoneSampler(file="output/"+modelName+".out", powerColumnName="power",
-                          likelihoodColumnName="likelihood")
+## ss = steppingStoneSampler(file="output/"+modelName+".out", powerColumnName="power",
+##                           likelihoodColumnName="likelihood")
 
-ss.marginal()
+## ss.marginal()
 
-write(ss.marginal()+"\n",filename="output/"+modelName+"_marginal.txt")
+## write(ss.marginal()+"\n",filename="output/"+modelName+"_marginal.txt")
 
 
 q()

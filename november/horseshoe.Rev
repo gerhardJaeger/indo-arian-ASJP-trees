@@ -63,7 +63,7 @@ seq.clamp(d)
 
 mymodel = model(seq)
 
-thinning = 10
+thinning = 50
 
 monitors[++mni] = mnFile(filename="output/"+modelName+".p",
                          printgen=thinning, rates)
@@ -73,11 +73,11 @@ monitors[++mni] = mnFile(filename="output/"+modelName+".t",
 
 monitors[++mni] = mnScreen(printgen=thinning)
 
-mymcmc = mcmcmc(mymodel, monitors, moves, nruns=4)
+mymcmc = mcmc(mymodel, monitors, moves, nruns=4)
 
 mymcmc.burnin(generations=5000, tuningInterval=100)
 
-mymcmc.run(generations=25000)
+mymcmc.run(generations=50000)
 
 
 ## stepping stone sampling

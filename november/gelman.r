@@ -1,6 +1,6 @@
 library(coda)
 
-modelName <- "horseshoe"
+modelName <- "gamma11"
 
 posterior1 <- read.table(paste0("output/", modelName, "_run_1.p"),
                          header=T,check.names=F)
