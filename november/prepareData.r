@@ -71,3 +71,5 @@ for (i in 1:length(trees)) {
     write.tree(tr, 'IIr.tree', append=T)
 }
 
+write.table(d[,c('taxon', 'code')], "coded.csv",
+            quote = F, row.names=F, sep=",")
