@@ -129,12 +129,12 @@ monitors[++mni] = mnScreen(printgen=thinning)
 
 mymcmc = mcmcmc(mymodel, monitors, moves, nruns=4)
 
-mymcmc.burnin(generations=1000, tuningInterval=100)
+#mymcmc.burnin(generations=1000, tuningInterval=100)
 
-mymcmc.run(generations=20000)
+#mymcmc.run(generations=20000)
 
 
-stepping stone sampling
+## stepping stone sampling
 
 pow_p = powerPosterior(mymodel, moves, monitors, "output/"+modelName+".out",
                        cats=50)

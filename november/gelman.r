@@ -32,4 +32,4 @@ chains <- mcmc.list(list(mcmc(data=posterior1[1:n,-1]),
                          mcmc(data=posterior4[1:n,-1])))
 
 
-gelman.diag(chains, autoburnin=F, transform=T, multivariate=F)
+gelman.diag(chains, autoburnin=F, transform=T, multivariate=T)
