@@ -14,9 +14,9 @@ moves[++mvi] = mvEmpiricalTree(tree, weight=1, metropolisHastings=FALSE)
 
 ## 1: (+clf,obl.pl)
 ## 2: (+clf,opt.pl)
-## 3: (-clf,obl.pl)
+## 3: (-clf,morph/obl.pl)
 ## 4: (-clf,opt.pl)
-## 4: (-clf,morph.pl)
+
 
 for (i in 1:12) {
   tau[i] ~ dnHalfCauchy(0, 1)

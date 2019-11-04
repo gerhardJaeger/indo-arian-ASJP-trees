@@ -14,8 +14,8 @@ moves[++mvi] = mvEmpiricalTree(tree, weight=1, metropolisHastings=FALSE)
 
 ## 1: (+clf,obl.pl)
 ## 2: (+clf,opt.pl)
-## 3: (-clf,obl.pl)
-## 4: (-clf,morph/opt.pl)
+## 3: (-clf,morph/obl.pl)
+## 4: (-clf,opt.pl)
 
 ## direct transitions:
 ## 1 -> 2
