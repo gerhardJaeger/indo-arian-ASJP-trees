@@ -168,26 +168,25 @@ nGenerations = length(posterior.Iteration);
 
 generations = randperm(nGenerations)[1:N];
 
-mutations = collectMutations(generations[1]);
 
-for g in 2:N
-    global mutations
-    print(g,"\n")
-    mutations = vcat(mutations,
-                     collectMutations(generations[g]));
-end
-
-begin
-    n = 4;
-    mMatrix = zeros((n,n));
-    for i in 1:length(mutations[:,1])
-        a = mutations[:source][i]
-        b = mutations[:target][i]
-        mMatrix[a,b] += 1;
+function mtable(itI::Int, nIterations=100)
+    mtb = zeros(Int, 4, 4)
+    for i in 1:nIterations
+        m = collectMutations(i)
+        for i in 1:nrow(m)
+            a, b = m[i,1:2]
+            mtb[a, b] += 1
+        end
     end
+    mtb/nIterations
+end;
+
+
+results = zeros(Float64, N, 4, 4)
+for i in 1:N
+    g = generations[i]
+    global results[i, :, :] = mtable(g)
+    println(i)
 end
 
-mMatrix/N
-
-
-CSV.write("simmapCounts.csv",mutations);
+results = reshape(results, (N, 16))
