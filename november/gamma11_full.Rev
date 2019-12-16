@@ -1,0 +1,143 @@
+seed(12345)
+modelName = "gamma11_full"
+
+d = readDiscreteCharacterData("states.nex")
+states = d.getStateDescriptions()
+trees = treeTrace(readTrees("IIr.tree", treetype="clock"), burnin=0)
+
+mni = 0
+mvi = 0
+
+tree ~ dnEmpiricalTree(trees)
+moves[++mvi] = mvEmpiricalTree(tree, weight=1, metropolisHastings=FALSE)
+
+
+## 1: (+clf,obl.pl)
+## 2: (+clf,opt.pl)
+## 3: (-clf,morph/obl.pl)
+## 4: (-clf,opt.pl)
+
+## direct transitions:
+## 1 -> 2
+## 1 -> 3
+## 2 -> 1
+## 2 -> 4
+## 3 -> 1
+## 3 -> 4
+## 4 -> 2
+## 4 -> 3
+
+
+r12 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r12)
+r13 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r13)
+r14 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r14)
+
+r21 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r21)
+r23 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r23)
+r24 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r24)
+
+r31 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r31)
+r32 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r32)
+r34 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r34)
+
+r41 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r41)
+r42 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r42)
+r43 ~ dnGamma(1,1)
+moves[++mvi] = mvScale(r43)
+
+## indirekt transitions:
+## 1 -> 4
+## 2 -> 3
+## 3 -> 2
+## 4 -> 1
+
+q[1][1] := 0
+q[1][2] := r12/1000
+q[1][3] := r13/1000
+q[1][4] := r14/1000
+
+q[1][1] := 0
+q[1][2] := r12/1000
+q[1][3] := r13/1000
+q[1][4] := r14/1000
+
+q[2][1] := r21/1000
+q[2][2] := 0
+q[2][3] := r23/1000
+q[2][4] := r24/1000
+
+
+q[3][1] := r31/1000
+q[3][2] := r32/1000
+q[3][3] := 0
+q[3][4] := r34/1000
+
+q[4][1] := r41/1000
+q[4][2] := r42/1000
+q[4][3] := r43/1000
+q[4][4] := 0
+
+counter = 0
+for (i in 1:4) {
+  for (j in 1:4) {
+    if (i != j) {
+      rates[++counter] := q[i][j]*1000
+    }
+  }
+}
+
+Q := fnFreeK(q, rescaled=FALSE)
+
+seq ~ dnPhyloCTMC(tree=tree, Q=Q, type="Standard")
+seq.clamp(d)
+
+mymodel = model(seq)
+
+thinning = 10
+
+monitors[++mni] = mnFile(filename="output/"+modelName+".p",
+                         printgen=thinning, rates)
+
+monitors[++mni] = mnFile(filename="output/"+modelName+".t",
+                         printgen=thinning, tree)
+
+monitors[++mni] = mnScreen(printgen=thinning)
+
+mymcmc = mcmcmc(mymodel, monitors, moves, nruns=4)
+
+mymcmc.burnin(generations=1000, tuningInterval=100)
+
+mymcmc.run(generations=20000)
+
+
+## stepping stone sampling
+
+pow_p = powerPosterior(mymodel, moves, monitors, "output/"+modelName+".out",
+                       cats=50)
+
+pow_p.burnin(generations=1000, tuningInterval=100)
+
+pow_p.run(generations=10000)
+
+ss = steppingStoneSampler(file="output/"+modelName+".out", powerColumnName="power",
+                          likelihoodColumnName="likelihood")
+
+ss.marginal()
+
+write(ss.marginal()+"\n",filename="output/"+modelName+"_marginal.txt")
+
+
+q()
+
+
