@@ -1,0 +1,80 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: chicagoa.bst
+Database file #1: pre_pilot_bibliography.bib
+Repeated entry---line 223 of file pre_pilot_bibliography.bib
+ : @article{PagelMeade2006
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 6030 of file pre_pilot_bibliography.bib
+ : @book{Oberlies2005
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 6287 of file pre_pilot_bibliography.bib
+ : @book{Paul1998
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 6430 of file pre_pilot_bibliography.bib
+ : @book{Morgenstierne1929
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 6563 of file pre_pilot_bibliography.bib
+ : @incollection{Skjaervo2009
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 6779 of file pre_pilot_bibliography.bib
+ : @incollection{Yoshida2009
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 6803 of file pre_pilot_bibliography.bib
+ : @book{Oberlies2001
+ :                   ,
+I'm skipping whatever remains of this entry
+Warning--page numbers missing in Carpenteretal2017
+Warning--can't use both author and editor fields in Gnanadesikan2017
+Warning--can't use both author and editor fields in Rastorguevaetal2012
+Warning--no number and no volume in TangHerinpress
+Warning--page numbers missing in TangHerinpress
+You've used 155 entries,
+            2905 wiz_defined-function locations,
+            1615 strings with 26968 characters,
+and the built_in function-call counts, 92683 in all, are:
+= -- 7261
+> -- 5729
+< -- 41
++ -- 1592
+- -- 2114
+* -- 6883
+:= -- 17708
+add.period$ -- 501
+call.type$ -- 155
+change.case$ -- 913
+chr.to.int$ -- 155
+cite$ -- 160
+duplicate$ -- 3124
+empty$ -- 6524
+format.name$ -- 2238
+if$ -- 16975
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 242
+newline$ -- 902
+num.names$ -- 1610
+pop$ -- 891
+preamble$ -- 1
+purify$ -- 1935
+quote$ -- 0
+skip$ -- 3189
+stack$ -- 0
+substring$ -- 4530
+swap$ -- 1040
+text.length$ -- 41
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 2200
+warning$ -- 5
+while$ -- 1659
+width$ -- 0
+write$ -- 2364
+(There were 7 error messages)

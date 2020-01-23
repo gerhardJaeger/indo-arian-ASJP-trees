@@ -1,0 +1,388 @@
+Mewati
+mewa1249
+There are at least three declensional classes, in one of which the plural and singular direct forms are identical. Plural number is marked on plural nouns, where morphologically possible \citep[20, 29]{Gusain2003}.
+(-clf,morph.pl)
+
+
+Hindi
+hind1269
+Hindi shows four declensional classes; the details of number marking are different for each one. Certain noun types are paradigmatically non-exhaustive; plural marking not morphologically possible on C-final masculine nouns in direct case \citep{Oberlies2005}.
+(-clf,morph.pl)
+
+
+Middle Persian
+pahl1241
+Middle Persian can mark plural with the suffixes {\it -h\=a} and {\it -\=an}, but plural is frequently unmarked on plural nouns \citep[223]{Skjaervo2009}.
+(-clf,opt.pl)
+
+
+Sinhala
+sinh1246
+When animate nouns are modified by a numeral, the form of the numeral used is different from that which is used when an inanimate noun is modified by a numeral \citep[60]{Chandralal2010}. Plural marking is obligatory, when applicable.
+(+clf,obl.pl)
+
+
+Sorani Kurdish
+cent1972
+According to \citet[45-6]{Blau1980}, the simple form of a noun can have either a singular or plural reading. In general, plural number is marked with the suffix {\it -an}.
+(-clf,opt.pl)
+
+
+Zazaki
+diml1238
+According to \citet[19ff.]{Paul1998}, a morphologically singular noun can be used in a generic sense, but nouns denoting a plurality, definite or indefinite, take the plural ending. Plural marking is non-obligatory. An apparent sortal classifier {\it teney} co-occurs with nouns marked both for singular and plural.
+(+clf,opt.pl)
+
+
+Shina
+shin1264
+Plural appears to be consistently marked on count nouns \citep{Schmidtetal2008}.
+(-clf,morph.pl)
+
+
+Bhojpuri
+bhoj1244
+Numeral classifiers are present, and plural marking is non-obligatory \citep[120, 228, 230]{Tiwari1960}
+(+clf,opt.pl)
+
+
+Dari
+dari1249
+Classifier use is common, but not obligatory; plural marking is optional; it is not clear if plural marking can co-occur with classifier use as in Standard Modern Persian (\citealt[74-5]{Kiseleva1985}; \citealt[58-9]{Ioannesjan1999}).
+(+clf,opt.pl)
+
+
+Bagri
+bagr1243
+There are at least three declensional classes, in one of which the plural and singular direct forms are identical. The distinction between animacy and inanimacy, rather than ending in {\it -i} versus other segments, is made by the author, who explicitly states that the suffix {\it -\~{a}} is optional on animate nouns. This is almost akin to a mixture of a system like that of Hindi, where plural cannot be marked on some noun case forms, and a system where plural marking is truly optional.
+(-clf,morph.pl)
+
+
+Parthian
+part1239
+\citet[272]{DurkinMeisterernst2014} describes a scenario for all of Middle West Iranian whereby plural marking is optional on all enumerated nouns, but animate nouns are more often marked for plural number than inanimates.
+(-clf,opt.pl)
+
+
+Kalasha
+kala1372
+Plural marking is optional \citep[35--6]{Petersen2015}.
+(-clf,opt.pl)
+
+
+Sariqoli
+sari1246
+Classifiers are present, and plural marking is optional \citep{Paxalina1971}.
+(+clf,opt.pl)
+
+
+Avestan
+aves1237
+Plural number is consistently marked, given rich agreement morphology \citep{HoffmannForssman2002}.
+(-clf,obl.pl)
+
+
+Konkani
+konk1267
+Certain noun categories have identical singular and plural endings in the direct case; otherwise, plural is consistently marked \citep[126ff.]{Almeida1989}
+(-clf,morph.pl)
+
+
+Modern Persian
+midd1350
+Modern Persian has several numeral classifiers, the most basic and widespread of which is {\it t\=a}, optionally used with numbers larger than one \citep[478]{WindfuhrPerry2009}. Plural marking is optional, but the noun being modified can be marked for plural number if it has specific reference \citep[195]{Mahootian1997}. Classifiers are obligatory in anaphoric use.
+(+clf,opt.pl)
+
+
+Siraiki
+sera1259
+Certain noun categories have identical singular and plural endings in the direct case; otherwise, plural is consistently marked \citep{Shackle1976}
+(-clf,morph.pl)
+
+
+Gujarati
+guja1252
+\citet[66--7]{Cardona1965} refers to the plural marker {\it -o} as ``optional,'' and it seems to largely be omitted when nouns are modified by a number greater than 1; so-called ``variable'' nouns display a special ``dependent stem form'' when they are semantically plural, regardless of the presence of the suffix {\it -o}.
+(-clf,opt.pl)
+
+
+Kalam Kohistani
+indu1241
+Kalam Kohistani achieves plural marking on a number of nouns via a vowel fronting process, which also is found in oblique forms of nouns, and appears to mark plural consistently on nouns \citep[21]{BaartSagar2004}. The word {\it khur} `foot' may show variability in plural marking, but it is not clear from the data given.
+(-clf,obl.pl)
+
+
+Dhivehi
+dhiv1236
+For nonhuman nouns, plural marking is optional when plurality is clear from context \citep[59]{Gnanadesikan2017}.
+(-clf,opt.pl)
+
+
+Old Persian
+oldp1254
+Plural number is consistently marked, given rich agreement morphology \citep{Kent1953}.
+(-clf,obl.pl)
+
+
+Oriya
+oriy1255
+Oriya has several classifiers; plural marking is optional \citep{NeukomPatnaik2003}.
+(+clf,opt.pl)
+
+
+Pashto
+pash1269
+Plural number appears to be consistently marked on Pashto nouns \citep[45ff.]{Penzl1955}; most paradigms are relatively complex and contain stem alternations. Numeral classifiers are possible, and co-occur with nouns marked for plural number, possibly with gender agreement (p.\ 82).
+(+clf,obl.pl)
+
+
+Ishkashimi
+ishk1246
+Ishkashimi contains at least three classifiers; nouns modified by a numeral greater than 1 can appear in singular or plural form \citep[50]{Paxalina1959}.
+(+clf,opt.pl)
+
+
+Mazandarani
+maza1291
+Classifiers are present, and plural marking is optional \citep[9--10]{Nawata1984}.
+(+clf,opt.pl)
+
+
+Kumzari
+kumz1235
+From \citeapos{Thomas1930} description, plural marking appears to be obligatory. Kumzari numerals are nearly identical to their Modern Persian cognates; however, from seven upwards, the Kumzari numerals all end in {\it -t\=a}, which is analyzed as a suffix. For human beings, a suffix {\it -kay} attaches to the number one {\it yek(kay)}; for two onward, the suffix {\it -kas} is used. According to a newer description, the numeral classifier {\it -t\=a} or {\it -ta} in Kumzari can also occur on numerals below seven \citep[47]{WalAnonby2015}
+(+clf,obl.pl)
+
+
+Awadhi
+awad1243
+Classifiers are present; information regarding plural marking is difficult to extract from \citealt[115ff.]{Saksena1971}, but it appears to be optional.
+(+clf,opt.pl)
+
+
+Yaghnobi
+yagn1238
+According to \citet[21--2]{Xromov1972}, when numbers two and upward combine with nouns, the noun is found in the oblique singular form; if measure terms are used, the measure term is marked for oblique singular. The numerative {\it ta}, borrowed from Tajik, can be used, but only with Tajik numerals. Outside of the context of enumeration, {\it -t/d} is consistently used to mark plural number on nouns.
+(+clf,obl.pl)
+
+
+Bakhtiyari
+bakh1245
+Classifiers are present, and plural marking is variable \citep{AnonbyAsadi2014}.
+(+clf,opt.pl)
+
+
+Sindhi
+sind1272
+There are at multiple declensional classes, in one of which the plural and singular direct forms are identical. Irregular plurals can be found for kinship terms. Arabic words often have distinctive plurals borrowed from the source language. Plural number is marked on plural nouns, where morphologically possible \citep[27--8]{Egorova1966}.
+(-clf,morph.pl)
+
+
+Luri
+luri1257
+According to \citet{MacKinnon2003}, plural marking is the same as in Modern Persian. No information regarding numeral classifiers is provided.
+(-clf,opt.pl)
+
+
+Dumaki
+doma1260
+For virtually all nouns, the singular form is distinguishable from the plural form \citep[24ff.]{Lorimer1939}; this is achieved via suffixation or a stem alternation.
+(-clf,obl.pl)
+
+
+Old East Rajasthani
+dhun1238
+There are at least three declensional classes, in one of which the plural and singular direct forms are identical. Plural number is marked on plural nouns, where morphologically possible \citep{Metzger2003}.
+(-clf,morph.pl)
+
+
+Ormuri
+ormu1247
+According to \citet[133]{Kieffer2003}, classifiers are used as they are in Dari.
+(+clf,opt.pl)
+
+
+Pali
+pali1273
+Pali generally maintains a clear morphological distinction between singular and plural; although the nominative singular and plural of ā-stems fell together due to regular sound change, a secondary plural suffix came into use in order to distinguish between the two numbers \citep[150--1]{Oberlies2001}
+(-clf,obl.pl)
+
+
+Panjabi
+panj1256
+There are at least three declensional classes, in one of which the plural and singular direct forms are identical. Plural number is marked on plural nouns, where morphologically possible \citep[214--5]{Bhatia1993}.
+(-clf,morph.pl)
+
+
+Sanskrit
+sans1269
+Plural number is consistently marked, given rich agreement morphology \citep{Macdonell1910}.
+(-clf,obl.pl)
+
+
+Marathi
+mara1378
+Plural number must be marked on semantically plural nouns, except where morphologically impossible, e.g., masculine kinship terms, certain loanwords \citep[366--7]{Pandharipande1997}. \citet[11]{Emeneau1956} claims that Marathi has a classifier {\it ja\d{n}/ja\d{n}\d{\={\i}}} (f.) that appears``when nouns denoting persons are numerated by numerals higher than four (and optionally for two to four).'' \citet[243]{Lambert1943} says the following: ``When the numerals refer to persons, special forms are used instead of don, tin, car; to other numerals the word {\IPA z@\:n} (m. {\IPA z@\:n}, cf.fem. {\IPA z@\:na(n)}; f. {\IPA z@\:ni}, cr.fem. {\IPA z@\:ni(n)}) is usually added. This word is often added also to the special forms of {\it don}, {\it tin}, {\it car}.'' No examples are given. \citet[50]{Katenina1963} gives examples of the special forms {\it doghe}, {\it tighe}, {\it \'caughe}, as well as the forms {\it {\'\j}a\d{n}} (m.) and {\it {\'\j}a\d{n}\={\i}} (f.) `people' which show the latter form as a head noun, but never in close apposition with another (head) noun. The interaction between the numerals and {\it {\'\j}a\d{n}(\={\i})} is striking; however, other grammars gloss these special forms simply as `both', `the three', and `the four' respectively \citep[59]{DhongdeWali2009}. These forms appear in Old Marathi as substantivized numerals, e.g., {\it he tighe bh\=au} `these three were brothers' (\citealt{Tulpule1963}, apud \citealt[425]{Southworth1970}).
+(-clf,morph.pl)
+
+
+Domari
+doma1258
+Plural marking on enumerated nouns interacts significantly with whether the numbers are inherited Indo-Aryan forms or borrowed from Arabic (see \citealt[97, 188ff.]{Matras2012}). Plural number is optionally marked on nouns modified by 2--3 (inherited numbers), obligatory on nouns modified by 4--10 (Arabic numbers), and optionally marked on nouns from 11 upward (Arabic numbers).
+(-clf,opt.pl)
+
+
+Marwari
+marw1260
+There are at least three declensional classes, in one of which the plural and singular direct forms are identical. Plural number is marked on plural nouns, where morphologically possible \citep[20, 29]{Gusain2004}.
+(-clf,morph.pl)
+
+
+Shughni
+shug1248
+Plural marking is optional, but classifiers do not appear to be present \citep{Zarubin1960}.
+(-clf,opt.pl)
+
+
+Bengali
+beng1280
+Bengali has a large repertoire of numeral classifiers \citep[135]{David2015}. Classifiers are obligatory with non-numeric quantifiers and lower numbers; optional with numbers ending in `hundred', `thousand', `lakh', etc. (p. 142). Numeral classifiers cannot cooccur with nouns denoting a countable unit, e.g., units of weight, currency, time, except in certain emphatic contexts (p. 142). Plural marking is non-obligatory (p. 76).
+(+clf,opt.pl)
+
+
+Prakrit
+maha1305
+Plural number is consistently marked, given rich agreement morphology \citep{Woolner1928}.
+(-clf,obl.pl)
+
+
+Nepali
+nepa1254
+Nepali contains several numeral classifiers \citep[100]{Acharya1991}; plural number is marked with {\it -haru}; according to Acharya this marking is optional (pp.\ 98-9). From Acharya's examples, {\it -haru} can can co-occur with numeral classifiers (p.\ 100). According to Bhim Lal Gautam (p.c.), -haru is obligatory with human nouns; however, non-human nouns cannot co-occur with overt plural marking and a classifier.
+(+clf,opt.pl)
+
+
+Khwarezmian
+khwa1238
+Plural is consistently marked \citep{DurkinMeisterernst2009}.
+(-clf,obl.pl)
+
+
+Khowar
+khow1242
+Plural marking appears to be optional on the basis of examples provided in \citealt{EndresenKristiansen1981}.
+(-clf,opt.pl)
+
+
+Maithili
+mait1250
+Maithili has at least two classifiers \citep[v.\ 1, 117]{Burghart1992}. The suffix {\it -sab(h)} is an optional plural marker; when added to nouns that are inherently plural (e.g., vegetables), takes on the meaning ``X and such things.'' Some other suffixes exist for reference to persons, used in formal speech \citep[v.\ 1, 50-1]{Burghart1992}.
+(+clf,opt.pl)
+
+
+Assamese
+assa1263
+Assamese has a large inventory of sortal classifiers. Plural marking is optional \citep{Borah2012,Chowdhary2012}.
+(+clf,opt.pl)
+
+
+Wakhi
+wakh1245
+Native Wakhi numeral forms are in competition with Tajik numeral forms \citep[89-90]{GruenbergSteblinKamenskij1988}. The word for twenty (bist) is borrowed from Tajik, but numerals 20-30 can combine bist with either Wakhi or Tajik forms in the digits place. A number of classifiers are borrowed from Tajik. Unlike the situation in Yaghnobi, these classifiers can be used with both Wakhi and borrowed Tajik numerals. Plural is marked with the suffix {\it -i\v{s}(t)} (p. 19), but this marking appears to be optional.
+(+clf,opt.pl)
+
+
+South Tati
+esht1238
+According to \citet[78]{Yarshater1969}, ``nouns modified by a numeral higher than one, or by an expression denoting plurality, are generally expressed in the plural in Chali [a particular dialect].'' Occasionally, however, the singular is used. In the other dialects, normally the singular is used for enumerated nouns. Plural marking otherwise seems to be the norm.
+(-clf,opt.pl)
+
+
+Taleshi
+taly1247
+Taleshi has a number of numeral classifiers, use of which is non-obligatory \citep[181-2]{Paul2011}; additionally, ``any noun following a numeral phrase is generally in the singular.'' Elsewhere, plural number is marked with a suffix that varies from dialect to dialect.
+(+clf,opt.pl)
+
+
+Palula
+phal1254
+Plural is consistently marked on count nouns with one of five suffixes, which are accompanied in some cases by stem alternations \citep[103--4]{Liljegren2016}.
+(-clf,obl.pl)
+
+
+Gilaki
+gila1241
+\citet{Rastorguevaetal2012} list several classifiers. Classifier use is optional when enumerating nouns, but appears to be quite common and obligatory in anaphoric use. In all examples given of counted nouns, there is no overt plural marking on the head noun (regardless of whether a classifier is present). Plural can otherwise be marked by means of certain suffixes.
+(+clf,opt.pl)
+
+
+Judeo-Tati
+jude1256
+Plural is marked on nouns with the suffix {\it -ho} \citep[79]{Authier2012}. Overt plural marking on enumerated nouns seems virtually non-existent.
+(-clf,opt.pl)
+
+
+Parachi
+para1299
+Little information about interactions between numeral modification and number marking can be found in \citet{Kieffer2009}. According to \citet[50]{Morgenstierne1929}, plural marking is optional, and rare when a numeral modifies the noun. No information regarding classifiers is given.
+(-clf,opt.pl)
+
+
+Agia Varvara Romani
+vlax1238
+Singular forms are always morphologically distinct from their plural counterparts, usually via the addition of a plural suffix or alternation of the final vowel \citep[23ff.]{Igla1996}. When a numeral greater than one modifies a noun, the noun is morphologically plural (p.\ 45). When the counted item consists of indefinite objects, then {\it -tane} ($<$ Turkish {\it tane} `piece, part') appears next to the numeral; anaphoric use of this classifier is obligatory (p.\ 45). 
+(+clf,obl.pl)
+
+
+Bactrian
+bact1239
+In late Bactrian, case and number distinctions have been neutralized due to the loss of distinctions between final vowels, resulting in ``an unmarked form without ending ... which may be used with either sg. or pl. reference, and a marked pl. form'' \citep[40]{SimsWilliams2007}.
+(-clf,opt.pl)
+
+
+Rakhshani Baluchi
+west2368
+Nouns can be marked for indefiniteness and singularity via the suffix {\it -e}; otherwise, there is no morphological distinction between singular and plural \citep[3ff.]{Barker1969}.
+(-clf,morph.pl)
+
+
+Khotanese Saka
+khot1251
+Plural number is consistently marked, given rich agreement morphology \citep{Emmerick1989}.
+(-clf,obl.pl)
+
+
+Kashmiri
+kash1277
+According to \citet[190ff.]{WaliKoul1996}: ``plurals are formed from singular stems by vowel change, palatalization and suffixation. A few nouns stay invariant. Masculine plurals are formed differently than the feminine plurals.'' Mass nouns, most body parts, and borrowed English nouns use the same forms in both the singular and the plural. Masculine nouns do not change for plurality if they have certain phonotactic properties or are borrowed from Hindi/Urdu and English with a final consonant.
+(-clf,morph.pl)
+
+
+Sogdian
+sogd1245
+Some Sogdian heavy stem nouns show a form that is identical to the singular in plural contexts \citep[313]{Yoshida2009}.
+(-clf,opt.pl)
+
+
+Saurashtran
+saur1248
+Plural number is marked on Saurashtran nouns by means of two suffixes, {\it -nu} and {\it -lu} (< Telugu) \citep[45--6]{Ucida1979}. When a numeral greater than one modifies a noun, the noun is plural, but certain non-human nouns (e.g., days, years) do not take plural form. 
+(-clf,morph.pl)
+
+
+Torwali
+torw1241
+According to \citet[34]{Grierson1929}, if a noun ends in a vowel, it can take a plural-marking suffix -e; otherwise, the singular and plural forms are identical.
+(-clf,morph.pl)
+
+
+Sangesari
+sang1315
+Classifiers do not exist in Sangesari. According to \citet[70ff.]{AzamiWindfuhr1972}, plural is consistently marked on oblique nouns with the suffix {\it -uon}, but rarely on direct nouns, except for a restricted set of items.
+(-clf,morph.pl)
+
+
+Iron Ossetic
+osse1243
+Plural number is marked on nouns by means of the suffix {\it -t-} \citep[117]{Thordarson2009}. In most contexts (except for contexts of enumeration, see below), use of {\it -t-} appears to be obligatory. When a noun is enumerated by a numeral greater than one, the noun is marked by the suffix -i (Digor), identical to the genitive suffix. According to \citet[132]{Thordarson2009}, this suffix continues the Old Iranian plural suffix {\it *-ah}. Nouns enumerated by numbers greater than one are always marked in a way that renders them distinct from singular nouns.
+(-clf,obl.pl)
