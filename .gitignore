@@ -108,3 +108,5 @@ venv.bak/
 .juliahistory
 
 history.txt
+
+**/auto
